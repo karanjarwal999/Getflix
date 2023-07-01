@@ -1,0 +1,44 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 3%;
+    height: 80px;
+    border-bottom: 1px solid lightgray;
+}
+.navbar>img{
+    width: 167px;
+}
+
+.navbar>p{
+    font-size: 19px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.navbar>p:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width:750px) {
+    .navbar{
+        height: 75px;
+    }
+    .navbar>img{
+        width: 167px;
+    } 
+    .navbar>p{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:500px) {
+    .navbar{
+        height: 46px;
+    }
+    .navbar>img{
+        width: 75px;
+    } 
+    .navbar>p{
+        font-size: 14px;
+    }
+}
+

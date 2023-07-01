@@ -1,0 +1,115 @@
+.planDiv{
+    display: grid;
+    margin-top: 23px;
+    margin-bottom: 10px;
+    grid-template-columns: repeat(4,24%);
+    justify-content: space-between;
+}
+.card{
+    padding-top: 25px;
+    padding-bottom: 95px;
+    width: 1028px;
+    margin: auto;
+}
+.step{
+    font-size: 12px;
+}
+.card>h2{
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+.card>p>span{
+   margin-right: 10px;
+   color: rgb(229, 9, 20);
+   font-weight: 900;
+   position: relative;
+   top: 5px;
+}
+.card>p{
+  /* margin-bottom: 6px; */
+  font-size: 18px;
+}
+.card>button{
+ margin: 20px auto;
+ display: block;
+ background-color: rgb(255, 12, 25);
+ font-size: 24px;
+ padding: 20px 24px;
+ border: none;
+ color: white;
+ width: 450px;
+ height: 72px;
+ box-sizing: border-box;
+ border-radius: 5px;
+ cursor: pointer;
+}
+.card>button:hover{
+ background-color: rgb(209, 10, 20);
+}
+.card>button:disabled{
+ background-color: rgb(250, 81, 89);
+}
+.card>button>img{
+ height: 100%;
+ margin: auto;
+ display: block;
+ animation: Rotete ease infinite;
+ -webkit-animation: Rotete 1.5s ease infinite;
+}
+
+@keyframes Rotete{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.bottomInfo{
+    font-size: 13px;
+    color: #171717;
+}
+.bottomInfo>p{
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1400px) {
+    .card{
+        width: 950px;
+    }
+}
+@media screen and (max-width: 1030px) {
+    .card{
+        width: 450px;
+    }
+    .planDiv{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+@media screen and (max-width: 530px) {
+    .card{
+        width: 320px;
+    }
+    .card>button{
+        width: 300px;
+    }
+}
+@media screen and (max-width: 350px) {
+    .card{
+        width: 100%;
+        padding: 10px;
+    }
+    .card>button{
+        width: 100%;
+    }
+    .card>h2{
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+    .card>p{
+      font-size: 15px;
+    }
+}

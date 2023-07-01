@@ -1,0 +1,348 @@
+.loginSection{
+    background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/76c10fc9-7ccd-4fbf-bc59-f16a468921ca/4fb4af6e-d0ca-4c7f-b004-b34226727e55/IN-en-20230529-popsignuptwoweeks-perspective_alpha_website_large.jpg);
+    filter: opacity(50%);
+    height: 1120px;
+    box-shadow: 0px 0px 100px black inset;
+}
+.mainDiv{
+    position: absolute;
+    top: 0;
+    height: 1120px;
+    width: 100%;
+}
+.mainDiv>nav{
+    height: 80px;
+    box-sizing: border-box;
+    padding: 25px 4%;
+    color: red;
+    font-family: 'Roboto Condensed', sans-serif;   
+    background-color: transparent;
+}
+.AppLogo>img{
+    width: 200px;
+}
+
+
+
+.FormDiv{
+    position: relative;
+    width: 450px;
+    height: 700px;
+    margin: auto;
+}
+.FormDiv>div:nth-child(1){
+    border-radius: 5px;
+    background-color: black;
+    opacity: 75%;
+    height: 100%;
+}
+
+.EmailMessage,.PasswordMessage{
+   display: none;
+}
+
+.LoginForm{
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15%;
+    color: white;
+}
+.LoginForm>h3{
+   color: white;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+   font-size: 30px;
+   margin-bottom: 5px;
+   cursor: default;
+}
+.InputOverlay,.PasswordOverlay{
+   display: inline-block;
+   position: relative;
+   font-size: 17px;
+   top: 35px;
+   left: 15px;
+   animation: all ease 3s;
+   color:rgb(174, 172, 172) ;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+
+.LoginForm>input{
+    width: 99%;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    padding-left:15px;
+    color: white;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+.LoginForm>input:focus{
+    outline: none !important;
+    border-bottom: 2px solid rgb(255, 128, 0);
+}
+.LoginForm>input:nth-child(7){
+    width: 100%;
+    margin-top: 35px;
+    font-weight: 700;
+    font-size: 15px;
+    color: white;
+    padding: 0px;
+    height: 50px;
+    background-color: #e50914;
+    cursor: pointer;
+}
+.passwordMessage{
+    display: none;
+    font-size: 11px;
+    color: rgb(255, 128, 0);
+    margin-top: 5px;
+}
+
+
+.AfterForm{
+   display: flex;
+   color:rgb(174, 172, 172) ;
+   justify-content: space-between;
+   font-size: 13px;
+   letter-spacing: 0.5px;
+   margin-top: 10px;
+   font-family: 'Poppins', sans-serif;
+}
+.AfterForm>div{
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   cursor: default;
+}
+.AfterForm>div>input{
+   accent-color: rgb(132, 131, 131) ;
+   color: black;
+   width: 15px;
+   height: 15px;
+}
+
+
+.formBottom{
+    margin-top: 70px;
+    font-size: 13px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:rgb(174, 172, 172) ;
+}
+.formBottom>p{
+    margin-top: 10px;
+}
+.formBottom>p:nth-child(1){
+    font-size: 15px;
+}
+.formBottom>p:nth-child(3){
+    display: none;
+}
+.formBottom>p>b{
+    font-size: 15px;
+    cursor: pointer;
+    color: white;
+}
+.formBottom>p>span,.formBottom>p>a{
+    color: #0080ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.formBottom>p>span:hover,.formBottom>p>a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+.footer{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight:-100;
+    position: relative;
+    margin-top: 82px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.FooterBlackBackground{
+    width: 100%;
+    height: 257px;
+    background-color: black;
+    opacity: 75%;
+}
+.footer>div:nth-child(2){
+    position: absolute;
+    top: 0;
+    color:rgb(169, 169, 169) ;
+}
+
+.footerDiv{
+    width: 100%;
+    max-width: 1000px;
+    height: 100%;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footerDiv>p{
+    color:rgb(105, 105, 105) ;
+}
+.footerDiv>ul{
+    width: 100%;
+    color:rgb(105, 105, 105) ;
+    display: grid;
+    font-size: 13px;
+    grid-template-columns:auto auto auto auto;
+    grid-template-rows: auto auto;
+    row-gap: 15px;
+    list-style: none;
+    justify-content: space-between;
+}
+.LanguageSelecter{
+    width: 130px;
+    border: 1px solid gray;
+    padding: 15px 10px;
+    background-color: black;
+}
+.LanguageSelecter>select{
+    background-color: transparent;
+    border: none;
+    color: white;
+    color:rgb(105, 105, 105) ;
+    margin-left: 10px;
+    accent-color: rgb(132, 131, 131) ;
+}
+.LanguageSelecter>select:focus{
+   outline: none;
+    accent-color: rgb(132, 131, 131) ;
+}
+.LanguageSelecter>span{
+    color: transparent;  
+  text-shadow: 0 0 0 rgb(105, 105, 105) ;
+}
+
+@media screen and (max-width:700px) {
+    .loginSection{
+        background-color: black;
+        filter: opacity(0%);
+        height: 900px;
+    }
+    .mainDiv{
+        height: 900px;
+    }
+    .FormDiv{
+        width: 100%;
+        height: 550px;
+    }
+    .LoginForm{
+        padding: 5%;
+        width: 100%;
+        height: 100%;
+        border-bottom: 1px solid gray;
+    }
+    .footer{
+        margin-top: 5px;
+    }
+    .FooterBlackBackground{
+        height: 250px;
+        background-color: black;
+        opacity: 0%;
+    }
+    .footerDiv{
+        padding: 3% 5%;
+    }
+    .footerDiv>ul{
+        grid-template-columns:auto auto auto;
+        grid-template-rows: auto auto;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .loginSection{
+        background-color: black;
+        filter: opacity(0%);
+        height: 930px;
+    }
+    .mainDiv{
+        height: 930px;
+    }
+    .FormDiv{
+        width: 100%;
+        height: 580px;
+    }
+    .footerDiv>ul{
+        grid-template-columns:auto auto;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .AppLogo>img{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .FormDiv{
+        height: 560px;
+    }
+    .mainDiv,.loginSection{
+        height: 860px;
+    }
+    .formBottom{
+        margin-top: 50px;
+        font-size: 11px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color:rgb(174, 172, 172) ;
+    }
+    .formBottom>p:nth-child(1){
+        font-size: 13px;
+    }
+    .formBottom>p>b{
+        font-size: 13px;
+        cursor: pointer;
+        color: white;
+    }
+    .footerDiv>ul{
+        font-size: 11px;
+        row-gap: 10px;
+    }
+    .footerDiv>p{
+        font-size: 15px;
+    }
+    .LanguageSelecter{
+        width: 100px;
+        padding: 10px;
+        font-size: 15px;
+    }
+    .LanguageSelecter>select{
+        font-size: 12px;
+    }
+    .FooterBlackBackground{
+        width: 100%;
+        height: 200px;
+        background-color: black;
+        opacity: 75%;
+    }
+}
+@media screen and (max-width:250px) {
+    .footerDiv>ul{
+        margin: 10px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+    .mainDiv,.loginSection{
+        height: 920px;
+    }
+    .FormDiv{
+        height: 600px;
+    }
+    .InputOverlay,.PasswordOverlay{
+        font-size: 12px;
+     }
+     .formBottom{
+        margin-top: 50px;
+    }
+}

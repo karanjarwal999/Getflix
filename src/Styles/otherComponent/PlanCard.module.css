@@ -1,0 +1,48 @@
+.outerdiv{
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.upperDiv{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.upperDiv>div>h3{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.upperDiv>div>h4{
+    font-size: 16px;
+    font-weight: 600;
+}
+.upperDiv>span>span{
+    background-color: white;
+    border-radius: 100%;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.lowerDiv{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.lowerDiv>div{
+    display: flex;
+    gap: 10px;
+}
+.lowerDiv>div>p{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@media screen and (max-width: 1030px) {
+    .lowerDiv{
+        gap: 5px;
+    }
+}
