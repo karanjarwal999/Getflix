@@ -154,6 +154,17 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.loginGuest{
+    display: block;
+    margin: auto;
+    padding: 5px 10px;
+    background-color: rgb(229, 9, 20);
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 25px;
+    border-radius: 5px;
+}
 
 @media screen and (max-width:960px) {
     .Div1_heading{
@@ -222,6 +233,9 @@
         margin: auto;
         padding: 10px 0px;
      }
+     .loginGuest{
+       margin-bottom: 20px;
+    }
 }
 @media screen and (max-width:400px) {
     .Div1_heading>h1{
@@ -235,13 +249,18 @@
     }
     .getStarted{
         width: 90%;
+        margin-bottom: 20px;
+        margin-top: 30px;
      }
+
      .getStarted>input{
         width: 96%;
      }
     .getStarted>button{
        width: 200px;
         margin: auto;
+        font-size: 22px;
+        font-weight: 500;
      }
      .Div1_heading{
         height: 520px;
@@ -252,6 +271,10 @@
     .getStarted>input{
         padding-bottom: 5px;
         padding-top: 30px;
+    }
+    .loginGuest{
+        margin-top: 0px;
+        font-size: 20px;
     }
 }
 
@@ -710,3 +733,7 @@
         gap: 10px;
      }
 }
+
+
+
+

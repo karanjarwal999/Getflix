@@ -1,11 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from '../../Styles/login.module.css'
 import { useNavigate } from 'react-router-dom'
 import AppLogo from '../../Logo/GETFLIX-logo.png'
+import { getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { useToast } from '@chakra-ui/react'
+import { warning } from 'framer-motion';
 
 
 export default function Login() {
+  const auth = getAuth();
+  const toast = useToast()
   const navigate = useNavigate();
+  let [email, setEmail] = useState('')
+  let [password, setPassword] = useState('')
+
+  function sendToast(message, status) {
+    toast({
+      title: message,
+      status: status,
+      duration: 2000,
+      isClosable: true,
+      position: 'top'
+    })
+  }
+
+  function login(e) {
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        sendToast('login sucessfully', 'success')
+      })
+      .catch((error) => {
+        sendToast(error.message,'warning')
+      });
+
+  }
+
 
   function showCaptchInfo() {
     document.getElementById('CaptchInfo').style.display = 'block'
@@ -17,18 +47,18 @@ export default function Login() {
     Overlay[0].style.top = '22px'
     Overlay[0].style.fontSize = '13px'
 
-    let rememberME=document.querySelector(`.${style.AfterForm}>div>input`).checked = true;
+    document.querySelector(`.${style.AfterForm}>div>input`).checked = true;
   }
 
-  function InputBlur(elementClass,e) {
-    if(e.target.value===''){
-    let Overlay = document.getElementsByClassName(elementClass)
-    Overlay[0].style.top = '35px'
-    Overlay[0].style.fontSize = '17px'
-  
-    let alertMessage=document.getElementsByClassName(`${style.passwordMessage}`)[0]
-    alertMessage.style.display='none'
-  }
+  function InputBlur(elementClass, e) {
+    if (e.target.value === '') {
+      let Overlay = document.getElementsByClassName(elementClass)
+      Overlay[0].style.top = '35px'
+      Overlay[0].style.fontSize = '17px'
+
+      let alertMessage = document.getElementsByClassName(`${style.passwordMessage}`)[0]
+      alertMessage.style.display = 'none'
+    }
   }
 
   function OverlayClick(elementId) {
@@ -36,21 +66,36 @@ export default function Login() {
   }
 
   function passwordValidate(e) {
-    let alertMessage=document.getElementsByClassName(`${style.passwordMessage}`)[0]
-    if(e.target.value.length<4){
-        alertMessage.style.display='block'
-    }else{
-      alertMessage.style.display='none'
+    let alertMessage = document.getElementsByClassName(`${style.passwordMessage}`)[0]
+    if (e.target.value.length < 4) {
+      alertMessage.style.display = 'block'
+    } else {
+      alertMessage.style.display = 'none'
+    }
+  }
+
+  function forgetpassword() {
+
+    if (email.length === 0) {
+      sendToast('Please enter email address', 'warning')
+    } else {
+      sendPasswordResetEmail(auth, email)
+        .then(() => {
+          sendToast('password reset mail has sent to you', 'success')
+        })
+        .catch((error) => {
+          sendToast(error.message, 'error')
+        });
     }
   }
 
 
   return (
-    <div style={{position:'relative'}}>
+    <div style={{ position: 'relative' }}>
       <div className={style.loginSection}></div>
       <div className={style.mainDiv}>
         <nav>
-          <p  className={style.AppLogo}><img src={AppLogo} alt="" /></p>
+          <p className={style.AppLogo}><img src={AppLogo} alt="" /></p>
         </nav>
 
 
@@ -60,23 +105,24 @@ export default function Login() {
             <h3>Sign In</h3>
 
             <span className={style.InputOverlay} onClick={() => OverlayClick(`userName`)}>Email or phone number</span>
-            <input id='userName' type="text" 
+            <input id='userName' type="text"
+              onChange={(e) => setEmail(e.target.value)}
               onFocus={(e) => InputOverlay(`${style.InputOverlay}`)}
-              onBlur={(e) => InputBlur(`${style.InputOverlay}`,e)}
+              onBlur={(e) => InputBlur(`${style.InputOverlay}`, e)}
               required />
 
             <span className={style.PasswordOverlay} onClick={() => OverlayClick(`Password`)}>Password</span>
-            <input id='Password' type="password" 
+            <input id='Password' type="password"
               onFocus={() => InputOverlay(`${style.PasswordOverlay}`)}
-              onBlur={(e) => InputBlur(`${style.PasswordOverlay}`,e)}
-              onChange={(e)=> passwordValidate(e)}
+              onBlur={(e) => InputBlur(`${style.PasswordOverlay}`, e)}
+              onChange={(e) => { passwordValidate(e); setPassword(e.target.value) }}
               required />
             <p className={style.passwordMessage}>Your password must contain between 4 and 60 characters.</p>
 
-            <input type="submit" value='Sign In' />
+            <input type="submit" value='Sign In' onClick={login} />
             <div className={style.AfterForm}>
               <div><input type='checkbox' /> Remember me</div>
-              <span>Need help?</span>
+              <span onClick={() => { forgetpassword() }}>forget password</span>
             </div>
 
 

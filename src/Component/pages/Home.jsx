@@ -1,9 +1,13 @@
 import React from 'react'
+import HomeNavbar from '../otherComponent/HomeNavbar'
+import Movies from '../otherComponent/movies'
 
 export default function Home() {
+  
   return (
     <div style={{color:'white'}}>
-      home page
+      <HomeNavbar/>
+      <Movies/>
     </div>
   )
 }

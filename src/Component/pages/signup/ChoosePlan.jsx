@@ -32,7 +32,7 @@ export default function ChoosePlan() {
 
       setTimeout(() => {
         setFlag(false)
-        Navigate('/home')
+        Navigate('/')
       }, 3000);
     }
 

@@ -1,0 +1,97 @@
+.moviesList{
+    display: grid;
+    overflow-x: scroll;
+    grid-template-columns: repeat(20,auto);
+    gap: 10px;
+    height: 200px;
+    position: relative;
+    align-items: center;
+    scroll-behavior: smooth;
+}
+.moviesList::-webkit-scrollbar{
+    display: none;
+}
+.categoryTitle{
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 4%;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.PreviousButton,.NextButton{
+    opacity: 0%;
+    z-index: 5;
+    position: absolute;
+    top: 45px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 3.5%;
+    height: 129px;
+    background-color: rgba(0, 0, 0, 0.541);
+}
+.PreviousButton:hover>span,.NextButton:hover>span{
+    font-size: 30px;
+}
+.PreviousButton{
+    left: 0;
+}
+.NextButton{
+    right: 0;
+}
+.moviesListOuterDiv:hover>button{
+    opacity: 100%;
+}
+
+
+/* category title */
+.moviesListOuterDiv{
+    position: relative;
+}
+.moviesListOuterDiv>h1{
+    display: flex;
+    position: absolute;
+    align-items: baseline;
+}
+.moviesListOuterDiv>h1>span{
+    display: none;
+    font-size: 15px;
+    font-weight: 900;
+    position: relative;
+    top: 1.5px;
+    color: #54b9c5;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.moviesListOuterDiv>h1>span>span{
+   display: none;
+   font-size: 13px;
+   font-weight: 700;
+   position: relative;
+   bottom: 1px;  
+   opacity: 0%; 
+}
+.moviesListOuterDiv:hover>h1>span{
+    display: inline;
+}
+.moviesListOuterDiv>h1:hover>span>span{
+    display: inline;
+    animation: ShowExplore 0.5s ease-in;
+    margin-left: 7px;  
+    opacity: 100%;
+}
+.moviesListOuterDiv>h1:hover>span{
+   font-size: 12px; 
+}
+
+@keyframes ShowExplore{
+    0%{
+        margin-left: 0px; 
+        opacity: 50%; 
+    }
+    100%{
+        opacity: 100%;
+        margin-left: 7px;  
+    }
+}

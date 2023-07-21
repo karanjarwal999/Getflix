@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "dotenv": "^16.3.1",
     "firebase": "^9.22.1",
     "framer-motion": "^10.12.16",
     "react": "^18.2.0",
@@ -18,7 +19,9 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "styled-components": "^6.0.0-rc.3",
+    "redux-thunk": "^2.4.2",
+    "styled-components": "^6.0.4",
+    "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

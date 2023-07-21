@@ -117,6 +117,14 @@
    gap: 5px;
    cursor: default;
 }
+.AfterForm>span{
+   color: #0080ff;
+   cursor: pointer;
+}
+.AfterForm>span:hover{
+   text-decoration: underline;
+   text-underline-offset: 3px;
+}
 .AfterForm>div>input{
    accent-color: rgb(132, 131, 131) ;
    color: black;
@@ -203,7 +211,7 @@
     justify-content: space-between;
 }
 .LanguageSelecter{
-    width: 130px;
+    width: 150px;
     border: 1px solid gray;
     padding: 15px 10px;
     background-color: black;

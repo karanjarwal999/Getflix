@@ -1,0 +1,243 @@
+.Active{
+    color: white;
+}
+.InACtive{
+    color: rgb(202, 200, 200);
+}
+
+.Navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.627) ,transparent);
+    padding: 0px 4%;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Navbar>img {
+    width: 10%;
+    cursor: pointer;
+}
+
+.Navbar>div {
+    width: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hymbergur {
+    display: none;
+}
+
+.hymbergurBtn {
+    display: flex;
+    align-items: center;
+    border: none;
+    font-size: 9.5px;
+}
+
+.hymbergurContent {
+    border-top: 2px solid white;
+    font-size: 15px;
+    padding: 15px 0px ;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.navlinks {
+    font-size: 14px;
+    font-weight: 100;
+    display: flex;
+    gap: 15px;
+    word-spacing: 0px;
+}
+
+.navlinks>a:hover {
+    color: white;
+}
+
+.serchbar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.serchbar>input {
+    color: transparent;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    background-image: url(https://github.com/karanjarwal999/api-server/assets/119421686/6ceb0405-298e-44c6-813c-174285072a71);
+    background-size: 70%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    background-blend-mode: color-dodge;
+}
+
+.serchbar>input:focus {
+    color: white;
+    padding-left: 40px;
+    background-color: rgba(0, 0, 0, 0.379);
+    background-image: url(https://github.com/karanjarwal999/api-server/assets/119421686/6ceb0405-298e-44c6-813c-174285072a71);
+    background-size: 8%;
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 3%;
+    animation: scale 1s ease;
+    width: 250px;
+}
+
+@keyframes scale {
+    0% {
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+    }
+}
+
+.serchbar>input::placeholder {
+    opacity: 0%;
+}
+
+.serchbar>input:focus::placeholder {
+    opacity: 100%;
+}
+
+.notificationDiv {
+    min-height: 150px;
+    border-top: 2px solid white;
+    padding: 10px;
+    padding-top: 25px;
+}
+.notificationAlert{
+    display: flex;
+    gap: 5px;
+}
+.notificationAlert>div>p{
+    font-size: 15px;
+    opacity: 50%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .navlinks {
+        font-size: 12.5px;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .navlinks {
+        font-size: 11.5px;
+        gap: 12px;
+    }
+
+    .serchbar>a {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .navlinks {
+        font-size: 9.5px;
+        gap: 12px;
+    }
+
+    .Navbar {
+        padding: 0px 5%;
+        height: 41px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    .navlinks {
+        display: none;
+    }
+
+    .hymbergur {
+        display: block;
+    }
+}
+@media screen and (max-width: 840px) and (min-width: 500px) {
+    .Navbar>img {
+        width: auto;
+        height: 50%;
+    }
+    .hymbergurBtn {
+        margin-left: 15px;
+        font-size: 12.5px;
+    }
+}
+@media screen and (max-width: 600px){
+    .serchbar>input{
+        font-size: 10px;
+        color: transparent;
+    } 
+    .serchbar>input:focus {
+        color: white;
+        height: 20px;
+        padding-left: 20px;
+        background-size: 8%;
+        width: 150px;
+        font-size: 10px;
+    } 
+    .serchbar {
+        gap: 15px;
+    }
+    @keyframes scale {
+        0% {
+            width: 50px;
+        }
+    
+        100% {
+            width: 150px;
+        }
+    }
+}
+@media screen and (max-width: 400px){
+    .Navbar>img {
+        width: 15%;
+    }
+    .Navbar {
+        padding: 0px 2%;
+    }
+    .hymbergurBtn {
+        margin-left: 12px;
+        font-size: 10px;
+    }
+    .serchbar>input:focus {
+        color: white;
+        height: 20px;
+        padding-left: 15px;
+        background-size: 8%;
+        width: 100px;
+        font-size: 10px;
+    } 
+    .serchbar {
+        gap: 10px;
+    }
+    @keyframes scale {
+        0% {
+            width: 50px;
+        }
+    
+        100% {
+            width: 100px;
+        }
+    }
+}

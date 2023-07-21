@@ -4,6 +4,7 @@ import style from '../../../Styles/signup/SignUP.module.css'
 import styled from 'styled-components'
 import { UserSingup } from '../../../Context/SignupContext'
 import { useNavigate } from 'react-router-dom'
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 
 
@@ -13,6 +14,7 @@ export default function SignUp() {
   const [Accordation, SetAccordion] = useState(0)
   const [UserEmail, SetUserEmail] = useState('')
   const Navigate=useNavigate()
+  const auth = getAuth();
 
 
   function showAccordation(value) {
@@ -43,11 +45,21 @@ export default function SignUp() {
 
   function SetEmailAndNavigate(){
     console.log(UserEmail.includes('@'))
-    if(UserEmail==''||!UserEmail.includes('@')){alert('Please enter email address')}
+    if(UserEmail===''||!UserEmail.includes('@')){alert('Please enter email address')}
     else{
       setUserData({...userData, 'email':UserEmail})
       Navigate('/signup/step')
     }
+  }
+
+  function handleGuestLogin() {
+    signInAnonymously(auth)
+    .then(()=>{
+      Navigate('/home')
+    })
+    .catch(()=>{
+      alert('something went wrong,please try again')
+    })
   }
 
   return (
@@ -82,6 +94,7 @@ export default function SignUp() {
               <input type="email" value={UserEmail} onChange={(e)=>SetUserEmail(e.target.value)} onFocus={()=>InputOverlay()} onBlur={InputBlur}/>
               <button onClick={()=>SetEmailAndNavigate()}>Get Started {'>'} </button>
             </div>
+            <button className={style.loginGuest} onClick={()=>handleGuestLogin()}>Login as Guest</button>
           </div>
         </div>
       </div>
