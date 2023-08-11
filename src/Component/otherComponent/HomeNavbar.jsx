@@ -1,10 +1,15 @@
 import React from 'react'
 import logo from '../../Logo/GETFLIX-logo.png'
 import { Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverTrigger } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import style from '../../Styles/otherComponent/HomeNav.module.css'
+import { useState } from 'react'
 
 export default function HomeNavbar() {
+  const Navigate=useNavigate()
+  const Location=useLocation()
+  const [prevRoute, setPrevRoute] = useState('')
+  const [timeInterval, setTimeInterval] = useState()
 
   let notification = [{
     img: 'https://dnm.nflximg.net/api/v6/kvDymu0eXRyicIuSUzvRrxrm5dU/AAAABQPD0afQEfPcdRN_mUeRp3sCLi412v8F8we15XCs1Q2XwL8ALz3DbAi6pACyytiN3_oUTxhVvU9Vc620cKsji3p6PUiLRSlimjGOZ6Bx2YvouWoel8-tD9fFYKwZ3V96iNdLGJx7_i8LRMI.jpg?r=6d6',
@@ -12,9 +17,31 @@ export default function HomeNavbar() {
     postedOn: '15 july'
   }]
 
+  function debounce(e){
+    if(timeInterval){
+      clearTimeout(timeInterval);  
+    }
+    setTimeInterval(setTimeout(() => {
+      handleSearch(e)
+    },3000))
+  }
+  
+  function handleSearch(e){
+    if(e.target.value===''){
+      Navigate(prevRoute) 
+      setPrevRoute('')
+    }else{
+    if(e.target.value.length>=1 && Location.pathname!=='/search'){
+      setPrevRoute(Location.pathname)
+      Navigate(`/search?q=${e.target.value}`,{state:{q:e.target.value}})
+     }
+    }
+  }
+
+
   return (
     <div id='navbar' className={style.Navbar}>
-      <img src={logo} alt="getflix" />
+      <img src={logo} alt="getflix" onClick={()=>Navigate('/')}/>
       <div>
         <div className={style.hymbergur}>
           <Popover trigger='hover'>
@@ -26,12 +53,11 @@ export default function HomeNavbar() {
               <PopoverCloseButton />
               <PopoverBody bg='black' border='none' p="0px" >
                 <div className={style.hymbergurContent}>
-                  <NavLink to="/home" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Home</NavLink>
-                  <NavLink to="/TVshows" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>TV Shows</NavLink>
+                  <NavLink to="/" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Home</NavLink>
                   <NavLink to="/movies" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Movies</NavLink>
-                  <NavLink to="/new" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>New & popular</NavLink>
+                  <NavLink to="/newAndPopular" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>New & popular</NavLink>
                   <NavLink to="/myList" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>My List</NavLink>
-                  <NavLink to="/languages" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Browse By Languages</NavLink>
+                  <NavLink to="/ByLanguage" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Browse By Languages</NavLink>
                 </div>
               </PopoverBody>
             </PopoverContent>
@@ -39,15 +65,14 @@ export default function HomeNavbar() {
         </div>
         <div className={style.navlinks}>
           <NavLink to="/" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Home</NavLink>
-          <NavLink to="/TVshows" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>TV Shows</NavLink>
           <NavLink to="/movies" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Movies</NavLink>
-          <NavLink to="/new" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>New & popular</NavLink>
-          <NavLink to="/myList" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>My List</NavLink>
-          <NavLink to="/languages" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Browse By Languages</NavLink>
+          <NavLink to="/newAndPopular" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>New & popular</NavLink>
+          <NavLink to="/MyList" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>My List</NavLink>
+          <NavLink to="/ByLanguage" className={({ isActive }) => isActive ? `${style.Active}` : `${style.InACtive}`}>Browse By Languages</NavLink>
         </div>
         <div className={style.serchbar}>
-          <input type="text" placeholder='Titles, people, genres' />
-          <NavLink to="/children">Children</NavLink>
+          <input type="text" placeholder='Titles, people, genres' id='searchbar' onChange={debounce}/>
+          <NavLink>Children</NavLink>
           <Popover trigger='hover' placement='bottom-end'>
             <PopoverTrigger>
               <span style={{ cursor: 'pointer' }} className="material-symbols-outlined"> notifications </span>
@@ -57,14 +82,14 @@ export default function HomeNavbar() {
               <PopoverCloseButton />
               <PopoverBody bg='black' border='none' p="0px">
                 <div className={style.notificationDiv}>
-                  {notification.length===0?'No New Notification':''}
+                  {notification.length === 0 ? 'No New Notification' : ''}
                   {notification?.map((data) => <div key={Date.now()} className={style.notificationAlert}>
                     <img src={data.img} alt="" />
                     <div>
                       <h3>{data.title}</h3>
                       <p>{data.postedOn}</p>
                     </div>
-                    </div>)
+                  </div>)
                   }
                 </div>
               </PopoverBody>
@@ -72,7 +97,7 @@ export default function HomeNavbar() {
           </Popover>
           <Popover trigger='hover' placement='bottom-end' >
             <PopoverTrigger>
-              <img src="https://occ-0-2086-2186.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229" alt="Profile" />
+              <img className={style.profileIcon} src="https://occ-0-2086-2186.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229" alt="Profile" />
             </PopoverTrigger>
             <PopoverContent bg='black' border='none' width='250px' marginTop='10px'>
               <PopoverArrow bg='white' />

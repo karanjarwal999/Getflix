@@ -1,25 +1,44 @@
 .CardDiv{
-    width: 230px;
+    /* width: 230px; */
     cursor: pointer;
     position: relative;
     z-index: 3;
-    margin-top: 20px;
+    margin-top: 40px;
+    height: 130px;
+    background-color: #1A1A1A;
+    overflow: hidden;
+    border-radius: 5px;
+
 }
 .firstCardDiv{
-    width: 230px;
-    margin-left: 4vw;
+    cursor: pointer;
     position: relative;
-    margin-top: 20px;
+    margin-top: 40px;
+    height: 130px;
+    background-color: #1A1A1A;
+    overflow: hidden;
+    border-radius: 5px;
 }
 .cardImage{
     border-radius: 5px;
     width: 100%;
+    height: 100%;
     z-index: 5;
 }
 .CardDiv:hover,.firstCardDiv:hover{
-    z-index: 4;
+    z-index: 6;
     transform: scale(1.5);
-    margin-top: 0px;
+    margin-top: 30px;
+    height: 165px;
+    border-radius: 5px;
+}
+.CardDiv:hover>div,.firstCardDiv:hover>div{
+    display: block;
+}
+
+.CardDiv:hover>img,.firstCardDiv:hover>img{
+     border-radius: 0px;
+     height: auto;
 }
 .CardDiv:hover>p,.firstCardDiv:hover>p{
     display: none;
@@ -27,9 +46,101 @@
 .imageReplacement{
     position: absolute;
     top: 0;
-    text-align: center;
+    background-color: #1A1A1A;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 100%;
+    height: 99%;
     z-index: -1;
     
+}
+.CardDiv>div,.firstCardDiv>div{
+    display: none;
+}
+.buttonDiv{
+    display: flex;
+    position: absolute;
+    bottom: 0.15px;
+    color: rgb(183, 182, 182);
+    width: 100%;
+    padding: 0%;
+    justify-content: space-between;
+}
+.buttonDiv>div{
+    
+    background-color: rgb(18, 18, 18);
+    padding: 0% 5%;
+    padding-top: 5px;
+    /* padding-bottom:2px; */
+    gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.buttonDiv>div>div>button{
+   position: relative;
+   top: 3px;
+}
+
+.buttonDiv>div>div{
+  display: flex;
+  gap: 5px;
+}
+
+
+.youtubeContainer {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16/12.5;
+    /* pointer-events: none; */
+} 
+
+.youtubeContainer iframe {
+    width: 125%;
+    height: 100%;
+    position: relative;
+    bottom: 18px;
+    margin-left: -25%;
+}
+
+
+@media screen and (max-width:600px) {
+    .CardDiv:hover,.firstCardDiv:hover{
+        transform: none;
+        margin-top: 40px;
+        height: auto;
+        border: 1x solid red;
+        border-radius: 5px;
+    }
+    .CardDiv:hover>div,.firstCardDiv:hover>div{
+        display: none;
+    }
+    .CardDiv:hover>img,.firstCardDiv:hover>img{
+         border-radius: 0px;
+    }
+    .CardDiv:hover>p,.firstCardDiv:hover>p{
+        display: none;
+    }
+    .CardDiv,.firstCardDiv{
+        height: auto;
+    }
+    .imageReplacement{
+        font-size: 15px;
+    }
+   
+}
+@media screen and (max-width:400px) {
+    .CardDiv,.firstCardDiv{
+        height: auto;
+        margin-top: 30px;
+    }
+    .CardDiv:hover,.firstCardDiv:hover{
+        margin-top: 30px;
+    }
+    .imageReplacement{
+        font-size: 12px;
+    }
 }

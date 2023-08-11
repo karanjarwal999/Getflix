@@ -1,0 +1,520 @@
+.bannerReplacement {
+    /* banner image size: 1519/855; */
+    padding-top: 56.28% !important;
+    background-color: black;
+    border: 5px solid red;
+}
+.movieOuterDiv{
+    position: relative;
+}
+.banner {
+    position: relative;
+}
+
+.banner>img {
+    width: 100%;
+    z-index: 3;
+}
+
+
+.blurBackground {
+    background-color: rgba(0, 0, 0, 0.363);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.blurBackground::after {
+    content: '';
+    background: linear-gradient(0.25turn, rgba(0, 0, 0, 0.627), transparent);
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    top: 0;
+}
+
+.blurBackground::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 30%;
+    width: 100%;
+    background: linear-gradient(transparent, black);
+}
+
+.bannerInfoDiv {
+    width: 50%;
+    position: absolute;
+    left: 4%;
+    top: 40%;
+}
+
+.bannerInfoDiv>h3 {
+    font-size: 3vw;
+    font-stretch: ultra-expanded;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.bannerInfoDiv>p {
+    font-size: 1.4vw;
+    font-weight: 500;
+}
+
+.bannerInfoDiv>div {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.bannerInfoDiv>div>button {
+    color: black;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border: none;
+    font-size: 1.5vw;
+    font-weight: 600;
+    /* padding: 5px 25px; */
+    padding: 0.5vw 1.6vw;
+    border-radius: 5px;
+}
+
+.bannerInfoDiv>div>button:nth-child(2) {
+    color: white;
+    background-color: rgba(109, 109, 110, 0.7);
+    gap: 10px;
+}
+
+.bannerInfoDiv>div>button>span {
+    font-size: 3vw;
+}
+
+.bannerInfoDiv>div>button:nth-child(2)>span {
+    font-size: 2.5vw;
+}
+
+
+
+
+.listMainDiv {
+    position: relative;
+    top: -13vw;
+    background-color: transparent;
+    color: white;
+}
+
+
+
+/* modal styleing */
+.modalVedioDiv {
+    position: relative;
+}
+
+.modalIframe iframe {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    bottom: 20px;
+    pointer-events: none;
+}
+
+.modalIframe {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.modalIframeOverlay {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    background-color: rgba(0, 0, 0, 0.112);
+    box-shadow: rgba(42, 42, 42, 0.224) 0px 7px 30px 0px;
+    padding: 0px 5px;
+}
+
+.modalIframeOverlay>h3 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.modalVedioDiv>button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.491);
+}
+
+.ModalbuttonDiv {
+    display: flex;
+    gap: 15px;
+    z-index: 5;
+}
+
+.ModalbuttonDiv>button:nth-child(1) {
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0px 20px;
+    color: black;
+    background-color: white;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.ModalbuttonDiv>button:nth-child(1):hover {
+    background-color: rgb(247, 246, 246);
+}
+
+.ModalbuttonDiv>button:nth-child(1)>span {
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.ModalbuttonDiv>button:nth-child(2)>span,
+.ModalbuttonDiv>button:nth-child(3)>span {
+    font-size: 37px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.modalImageOverlay {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    bottom: 0px;
+    background: linear-gradient(transparent, #1A1A1A);
+}
+
+.modalMidInfo {
+    margin: 0% 5% 15px 5%;
+    display: grid;
+    grid-template-columns: 68% 30%;
+    justify-content: space-between;
+    cursor: default;
+    font-size: 15px;
+}
+
+.modalMidInfo>div:nth-child(2)>p,
+.modalBottomInfo>p {
+    color: gray;
+}
+
+.modalMidInfo>div:nth-child(2)>p>span,
+.modalBottomInfo>p>span {
+    color: white;
+}
+
+.modalBottomInfo {
+    margin: 0px 5% 20px 5%;
+    font-size: 15px;
+}
+
+.modalBottomInfo>h2 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.modalBottomInfo>p:nth-child(6) {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.modalBottomInfo>p:nth-child(6)>span{
+    color: white;
+}
+
+.modalBottomInfo>p:nth-child(6)>span>span:nth-child(1) {
+    border: 1px solid white;
+    margin: 0px 5px;
+    padding: 2px 5px;
+    text-align: center;
+}
+
+
+
+/* Modal More Like This suggestion */
+.ModalMoreLikeThis {
+    margin: 20px 5% 0px 5%;
+    position: relative;
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+
+.ModalMoreLikeThis>h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.moreLikeThisDiv {
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    row-gap: 15px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.expandBtn {
+    width: 100%;
+}
+.expandBtn>span {
+    position: relative;
+    bottom: 20px;
+    font-size: 40px;
+    background-color:#1A1A1A;
+    border-radius: 100%;
+}
+
+.likeThisCard {
+    cursor: pointer;
+    background-color: #2F2F2F;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.likeThisCard>img {
+    width: 100%;
+}
+
+.likeThisCard>div {
+    margin: 10px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.likeThisCard>div>div {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 80% auto;
+    font-size: 14px;
+}
+
+.likeThisCard>div>div>button>span {
+    font-size: 35px;
+}
+
+.likeThisCard>div>div>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.likeThisCard>div>div>div>p>span:nth-child(1) {
+    border: 1px solid white;
+    margin-right: 3%;
+    padding: 1px 3px;
+}
+
+.likeThisCard>div>h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.likeThisCard>div>p {
+    font-size: 14px;
+}
+
+
+.popularDiv{
+ margin-top: 7vw;
+ min-height: 60vh;
+}
+
+@media screen and (max-width: 500px) {
+    .bannerInfoDiv>h3 {
+        font-size: 3.5vw;
+    }
+    
+    .bannerInfoDiv>p {
+        font-size: 2vw;
+    }
+    .listMainDiv {
+        top: -8vw;
+    }
+    .bannerInfoDiv {
+        top: 30%;
+        width: 60%;
+        left: 3%;
+    }   
+    .bannerInfoDiv>div>button {
+        border-radius: 2px;
+    } 
+}
+
+
+
+
+/* modal reponsive */
+@media screen and (max-width:850px) {
+    .bannerInfoDiv>h3 {
+        font-size: 3.5vw;
+        font-weight: 800;
+    }
+    .bannerInfoDiv {
+        width: 60%;
+        top: 30%;
+    }
+    .bannerInfoDiv>p {
+        font-size: 1.8vw;
+    }
+
+    .modalIframeOverlay>h3 {
+        font-size: 5vw;
+    }
+    .ModalbuttonDiv {
+        gap: 5%;
+    }
+    
+    .ModalbuttonDiv>button:nth-child(1) {
+        font-size: 2.5vw;
+    }
+    
+    
+    .ModalbuttonDiv>button:nth-child(1)>span {
+        font-size: 5vw;
+    }
+    
+    .ModalbuttonDiv>button:nth-child(2)>span,
+    .ModalbuttonDiv>button:nth-child(3)>span {
+        font-size: 4vw;
+    }
+    
+    
+    .modalMidInfo {
+        font-size: 1.8vw;
+    }
+    
+    .modalBottomInfo {
+        font-size: 1.7vw;
+    }
+    
+    .modalBottomInfo>h2 {
+        font-size: 3vw;
+    }
+    
+    .ModalMoreLikeThis>h2 {
+        font-size: 3vw;
+    }
+    
+    .likeThisCard>div>div {
+        font-size: 1.7vw;
+    }
+    
+    .likeThisCard>div>div>button>span {
+        font-size: 4vw;
+    }
+    
+    .likeThisCard>div>h3 {
+        font-size: 2.4vw;
+        line-height: 3vw;
+    }
+    
+    .likeThisCard>div>p {
+        font-size: 1.7vw;
+    }
+    .popularDiv{
+        margin-top: 9vw;
+    }
+      
+}
+@media screen and (max-width:600px) {
+    .moreLikeThisDiv {
+        display: grid;
+        grid-template-columns: 48% 48%;
+        row-gap: 15px;
+    }  
+    .modalBottomInfo {
+        font-size: 2.1vw;
+    }
+    .ModalMoreLikeThis>h2 {
+        font-size: 3.2vw;
+    }
+    
+    .likeThisCard>div>div {
+        font-size: 1.8vw;
+    }
+    
+    .likeThisCard>div>div>button>span {
+        font-size: 5vw;
+    }
+    
+    .likeThisCard>div>h3 {
+        font-size: 2.8vw;
+        line-height: 3.2vw;
+    }
+    
+    .likeThisCard>div>p {
+        font-size: 2vw;
+    }
+    .modalMidInfo {
+        font-size: 2.2vw;
+    } 
+    .modalMidInfo {
+        font-size: 2.2vw;
+    }
+    .popularDiv{
+        margin-top: 11vw;
+    }
+}
+@media screen and (max-width:400px) {
+    .modalVedioDiv>button {
+        top: 10px;
+        right: 10px;
+    } 
+    .ModalbuttonDiv>button:nth-child(1) {
+        padding: 0px 10px;
+        border-radius: 3px;
+    }
+    .likeThisCard>div>p {
+        font-size: 2.2vw;
+    }
+    .likeThisCard>div {
+        margin: 5px 3%;
+        gap: 5px;
+    }
+    .modalMidInfo>div:nth-child(1)>p>span:nth-child(3),.modalMidInfo>div:nth-child(1)>p>span:nth-child(4){
+        font-size: 20px;
+    }
+    .modalMidInfo>div:nth-child(1)>p>span:nth-child(5){
+        font-size: 17px;
+    }
+    .ModalMoreLikeThis,.modalMidInfo {
+        margin: 20px 3% 0px 3%;
+    }
+    .modalBottomInfo{
+        margin: 0px 3% 10px 3%;
+    }
+    .modalIframeOverlay {
+        bottom: 15%;
+        left: 3%;  
+    }
+    .popularDiv{
+        margin-top: 14vw;
+    }
+}
+.ReminderBtn>button{
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    font-weight: 550;
+    border-radius: 5px;
+  }
+.ReminderBtn>button>span{
+    margin-right: 5px;
+    position: relative;
+    top: 5px;
+  }
+
+
+

@@ -29,6 +29,7 @@ export default function Loader() {
 
 const Div= styled.div`
  margin-left: 4vw;
+ margin-bottom: 50px;
 
 .Loader_title{
     height: 20px;
@@ -47,6 +48,23 @@ const Div= styled.div`
     width: 230px;
     background-color:#1A1A1A;
     border-radius: 5px;
+}
+
+@media screen and (max-width:600px){
+  .Loader_flexDiv>div{
+    width: 180px;
+}
+.Loader_flexDiv{
+   height: 102px;
+}
+}
+@media screen and (max-width:400px){
+  .Loader_flexDiv>div{
+    width: 140px;
+}
+.Loader_flexDiv{
+   height: 80px;
+}
 }
 
 `

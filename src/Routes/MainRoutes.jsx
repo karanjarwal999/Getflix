@@ -16,7 +16,7 @@ export default function MainRoutes() {
   return (
     <Routes>
         <Route path='/logout' element={<Logoutpage/>}/>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/*' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route exact path='/signup' element={<SignupContext><SingUp/></SignupContext>} />
         <Route exact path='/signup/step' element={<SignupContext><Step0/></SignupContext>}/>

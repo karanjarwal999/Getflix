@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-export default function HomeFooter() {
+export default function HomeFooter({relative=false}) {
   return (
-    <div style={{width:'100%',display:'flex',justifyContent:'center'}}>
+    <div style={{width:'100%',display:'flex',justifyContent:'center',position:"relative"}}>
 
     <Div>
       <div className='homeFooterImgDiv'>
@@ -40,9 +40,9 @@ font-size:13px;
 color:#808080;
 margin:auto;
 max-width: 1000px;
-position:absolute;
-bottom:0;
+bottom:3vw;
 width:100%;
+padding: 0px 10px;
 
 div>img{
     border-radius: 100%;
@@ -57,17 +57,29 @@ div>img{
     display: grid;
     grid-template-columns: auto auto auto;
     row-gap:15px;
+    cursor:pointer;
+}
+.homeFooterGridDiv>p:hover{
+    text-decoration:underline;
 }
 .homeFooterBottomDiv{
     margin :15px 0px;
 }
 .homeFooterBottomDiv>p:nth-child(1){
-    border: 1px solid white;
+    border: 1px solid gray;
     padding: 5px;
     margin-bottom:15px;
     display:inline-block;
 }
 .homeFooterBottomDiv>p:nth-child(1):hover{
     color:white;
+}
+
+
+@media screen and (max-width:450px){
+  .homeFooterGridDiv{
+    grid-template-columns: auto auto;
+    row-gap:10px;
+  }
 }
 `

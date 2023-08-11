@@ -30,7 +30,7 @@ const fetchOnlyAction = (num, fetchlist) => async (dispatch) => {
   })
 
   // Restructureing data and taking only key:value that are needed
-  let newdata = temp.data.results.map((data) => ({ "id": data.id, "original_language": data.original_language, "original_title": data.original_title, "description": data.overview, "image": data.backdrop_path, "title": data.title, "release_date": data.release_date }))
+  let newdata = temp.data.results.map((data) => ({ "id": data.id, "original_language": data.original_language, "original_title": data.original_title, "description": data.overview, "image": data.backdrop_path, "title": data.title, "release_date": data.release_date, "genre_ids": data.genre_ids }))
 
   movies.push({ title: fetchlist[num].name, data: newdata })
   num++
@@ -38,6 +38,7 @@ const fetchOnlyAction = (num, fetchlist) => async (dispatch) => {
   // updating store with action movies 
 
   dispatch(fetchNext_4Movies(num, fetchlist))
+  dispatch(New_popular)
 }
 
 
@@ -60,8 +61,9 @@ const fetchNext_4Movies = (num, fetchlist) => async (dispatch) => {
       })
 
       // Restructureing data and taking only key:value that are needed
-      let newdata = temp.data.results.map((data) => ({ "id": data.id, "original_language": data.original_language, "original_title": data.original_title, "description": data.overview, "image": data.backdrop_path, "title": data.title, "release_date": data.release_date }))
+      let newdata = temp.data.results.map((data) => ({ "id": data.id, "original_language": data.original_language, "original_title": data.original_title, "description": data.overview, "image": data.backdrop_path, "title": data.title, "release_date": data.release_date, "genre_ids": data.genre_ids }))
 
+      
       movies.push({ title: fetchlist[i].name, data: newdata })
     }
   }
@@ -72,6 +74,34 @@ const fetchNext_4Movies = (num, fetchlist) => async (dispatch) => {
   if (num < fetchlist.length) {
     dispatch(fetchNext_4Movies(num, fetchlist))
   }
+}
+
+
+// fetchinfg data for new and popular page
+const New_popular = async (dispatch) => {
+  let movies = []
+  let apiendpoints = ["top_rated", "now_playing", "upcoming"]
+
+  for (let i = 0; i < 3; i++) {
+
+    let temp = await axios.get(`https://api.themoviedb.org/3/movie/${apiendpoints[i]}`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
+      }
+    })
+
+    // Restructureing data and taking only key:value that are needed
+    let newdata = temp.data.results.map((data) => ({ "id": data.id, "original_language": data.original_language, "original_title": data.original_title, "description": data.overview, "image": data.backdrop_path, "title": data.title, "release_date": data.release_date }))
+
+    if (apiendpoints[i] === 'upcoming') { 
+      movies.push({ title: apiendpoints[i], data: newdata.slice(5,20) }) 
+    }
+    else { movies.push({ title: apiendpoints[i].split('_').join(' '), data: newdata }) }
+  }
+
+  dispatch({ type: "update_New_popular", payload: movies })
+
 }
 
 
