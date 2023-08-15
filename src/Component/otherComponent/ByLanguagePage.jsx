@@ -16,16 +16,19 @@ export default function ByLanguagePage() {
   const [expandModal, setExpandModal] = useState(true)
   const [ModalData, setModalData] = useState({})
 
+  // getting data from store
   const MyList = useSelector((store) => store.MyList)
   const movieData = useSelector((store) => store.data)
   const myLiked = useSelector((store) => store.MyLiked)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  // fetching vedio Id from youtube  api
   const fetchVedio = (data, category) => {
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
   }
 
+  // manage popup modal 
   const ManageModal = async (id, vedioId, category) => {
     onClose()
     setExpandModal(false)
@@ -49,10 +52,14 @@ export default function ByLanguagePage() {
         }
       })
   }
+
+  // scrolling to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])
 
+
+  // sorting data as page select value or default value (uk)
   useEffect(() => {
     setLoading(true)
     let Movies = movieData.reduce((acc, item) => {
@@ -67,6 +74,8 @@ export default function ByLanguagePage() {
   }, [language, movieData])
 
 
+
+  // option data for selesct tag
   const languageOptions = [
     { value: "en", label: "English" },
     { value: "uk", label: "Ukrainian" },

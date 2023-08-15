@@ -22,6 +22,7 @@ export default function Movies() {
   const myReminder = useSelector((store) => store.MyReminder)
 
 
+  // manage modal function
   async function ManageModal(id, vedioId, category, released) {
     onClose()
     setRandomNumber(Math.floor(Math.random() * 7))
@@ -36,8 +37,8 @@ export default function Movies() {
       .then((res) => {
         // checking for vedioid , if not call the function to get id
         if (vedioId === '') {
-          setModalData({ data: res.data, vedioId: 'notFound', category: category || res.data.genres[0].name, released: released })
-          // fetchVedio(res.data,category)
+          // setModalData({ data: res.data, vedioId: 'notFound', category: category || res.data.genres[0].name, released: released })
+          fetchVedio(res.data,category)
           onOpen()
         } else {
           setModalData({ data: res.data, vedioId: vedioId, category: category || res.data.genres[0].name, released: released })
@@ -45,12 +46,14 @@ export default function Movies() {
         }
       })
 
+    // fetching vedio id from youtubr api
     function fetchVedio(data, category, released) {
       axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category, released: released }))
     }
   }
 
+  // scrolling to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])

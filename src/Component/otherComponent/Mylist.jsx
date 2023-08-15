@@ -19,6 +19,7 @@ export default function Mylist() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
 
+  // manage popup modal
   const ManageModal=(id, vedioId)=>{
     onClose()
     setRandomNumber(Math.floor(Math.random() * 7))
@@ -27,8 +28,8 @@ export default function Mylist() {
     myList.forEach((el) => {
       if (el.id === id) {
         if (vedioId === '') {
-          setModalData({ "data": el, vedioId: "notFound", category: el.genres[0].name })
-          // fetchVedio(el,el.genres[0].name)
+          // setModalData({ "data": el, vedioId: "notFound", category: el.genres[0].name })
+          fetchVedio(el,el.genres[0].name)
         } else {
           setModalData({ "data": el, vedioId: vedioId, category: el.genres[0].name })
         }
@@ -38,12 +39,14 @@ export default function Mylist() {
 
   }
 
+  // fetching vedio id from youtube api
   const fetchVedio=(data, category)=>{
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
   }
 
 
+  // manage modal on clicking recommended movies
   const LikeThisModal=async(id, vedioId, category)=>{
     onClose()
     setExpandModal(false)
@@ -68,7 +71,7 @@ export default function Mylist() {
   }
 
 
-
+  // getting full data from movie id
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 

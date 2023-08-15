@@ -9,7 +9,7 @@ export default function MoviesList({ MovieData,ManageModal,released}) {
   let [scrollvalue, setScrollValue] = useState(0)
   
 
-
+  // to scroll by buttons
   function scrolllist(direction) {
     let img = document.querySelector(`.${style.moviesList}>div>img`)
     let scroll = img.clientWidth * 2 + 20

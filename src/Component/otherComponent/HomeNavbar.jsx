@@ -11,12 +11,16 @@ export default function HomeNavbar() {
   const [prevRoute, setPrevRoute] = useState('')
   const [timeInterval, setTimeInterval] = useState()
 
+
+  // dummy data for natification hover
   let notification = [{
     img: 'https://dnm.nflximg.net/api/v6/kvDymu0eXRyicIuSUzvRrxrm5dU/AAAABQPD0afQEfPcdRN_mUeRp3sCLi412v8F8we15XCs1Q2XwL8ALz3DbAi6pACyytiN3_oUTxhVvU9Vc620cKsji3p6PUiLRSlimjGOZ6Bx2YvouWoel8-tD9fFYKwZ3V96iNdLGJx7_i8LRMI.jpg?r=6d6',
     title: 'Coming on 27th july',
     postedOn: '15 july'
   }]
 
+
+  // debounce to reduce request
   function debounce(e){
     if(timeInterval){
       clearTimeout(timeInterval);  
@@ -26,6 +30,8 @@ export default function HomeNavbar() {
     },3000))
   }
   
+
+  // function to handle search
   function handleSearch(e){
     if(e.target.value===''){
       Navigate(prevRoute) 
@@ -107,15 +113,15 @@ export default function HomeNavbar() {
                   <img src="https://occ-0-2086-2186.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABcJE6sna7-v-fDszqTSTLqoNLNTV8u6FCGOehw7JKWVmU-oLMoXYX6K0f2nKdOFZcATnH9GAw2kgTZTxZj1cEPt9GYnRYbc.png?r=54d" alt="" />
                   <p>Children</p>
                 </div>
-                <div className={style.profileDiv} style={{ display: 'grid', gridTemplateColumns: '20% 75%', rowGap: '10px' }}>
+                <div className={style.profileDiv} >
                   <span className="material-symbols-outlined">edit</span>
                   <p>Manage Profiles</p>
                   <span className="material-symbols-outlined">swap_horizontal_circle</span>
-                  <p>Transfer Profile</p>
+                  <p onClick={()=>Navigate('/transferProfile')}>Transfer Profile</p>
                   <span className="material-symbols-outlined">person</span>
                   <p>Account</p>
                   <span className="material-symbols-outlined">help</span>
-                  <p>Help Center</p>
+                  <p onClick={()=>Navigate('/help')}>Help Center</p>
                 </div>
               </PopoverBody>
               <PopoverFooter>

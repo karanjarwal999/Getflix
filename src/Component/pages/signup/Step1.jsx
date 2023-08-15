@@ -20,6 +20,8 @@ export default function Step1() {
     emailOverlay()
   }, [])
 
+  
+  //validate password and  moving password input overlay to top
   function managePasswordOverlay(e) {
     let overlay = document.getElementsByClassName('passwordOverlay')
 
@@ -45,6 +47,8 @@ export default function Step1() {
 
   }
 
+
+  // moving email input overlay to top
   function emailOverlay() {
     let emailInput = document.getElementById('email')
     let emailOverlay = document.getElementsByClassName('emailOverlay')
@@ -57,7 +61,6 @@ export default function Step1() {
 
   // function to create account
   function handleSubmit() {
-
     function sendToast(message, status) {
       toast({
         title: message,
@@ -68,7 +71,6 @@ export default function Step1() {
       })
     }
 
-    
     if (userData.email === '' || userData.password === '') {
       sendToast('Please enter valid email or password', 'warning')
     }

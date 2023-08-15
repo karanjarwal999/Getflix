@@ -2,13 +2,23 @@ import React, { useEffect } from 'react'
 import logo from './../../Logo/GETFLIX-logo.png'
 import { useNavigate } from 'react-router-dom'
 import style from './../../Styles/logout.module.css'
+import { Auth } from '../firebaseConfig'
+import { signOut } from 'firebase/auth'
 
 export default function Logoutpage() {
     const Navigate = useNavigate()
     useEffect(()=>{
+        // signout with firebase
+        signOut(Auth)
+
+        // redirect to signup page after 30 sec 
         let time= setTimeout(() => {
             Navigate('/signup')
         }, 30000);
+
+        return()=>{
+            clearTimeout(time)
+        }
     },[])
 
     return (

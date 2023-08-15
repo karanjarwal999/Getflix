@@ -96,6 +96,19 @@
     animation: scale 1s ease;
     width: 250px;
 }
+.profileDiv{
+    display: grid;
+    grid-template-columns: 20% 75%;
+    row-gap: 10px;
+}
+.profileDiv>p:hover{
+    text-decoration: underline;
+    cursor:default;
+    text-underline-offset: 5px;
+}
+.profileDiv>span{
+    cursor:default;
+}
 
 @keyframes scale {
     0% {

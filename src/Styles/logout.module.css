@@ -193,6 +193,7 @@
         margin: 10px 0px;
         display: flex;
         flex-direction: column;
+        /* background-color: #170101; */
     }
    
 }

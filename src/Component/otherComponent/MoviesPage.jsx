@@ -19,16 +19,19 @@ export default function ByLanguagePage() {
   const [ModalData, setModalData] = useState({})
   const [DisplayFormat, setDisplayFormat] = useState('grid')
 
+  // getting store data
   const MyList = useSelector((store) => store.MyList)
   const movieData = useSelector((store) => store.data)
   const myLiked = useSelector((store) => store.MyLiked)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  // fetching vedio id from youtube api
   const fetchVedio = (data, category) => {
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
   }
 
+  // manage popup modal
   const ManageModal = async (id, vedioId, category) => {
     onClose()
     setExpandModal(false)
@@ -43,8 +46,8 @@ export default function ByLanguagePage() {
       .then((res) => {
         // checking for vedioid , if not call the function to get id
         if (vedioId === '') {
-          setModalData({ data: res.data, vedioId: 'notFound', category: res.data.genres[0].name })
-          // fetchVedio(res.data,category)
+          // setModalData({ data: res.data, vedioId: 'notFound', category: res.data.genres[0].name })
+          fetchVedio(res.data,category)
           onOpen()
         } else {
           setModalData({ data: res.data, vedioId: vedioId, category: res.data.genres[0].name })
@@ -52,10 +55,14 @@ export default function ByLanguagePage() {
         }
       })
   }
+
+  // scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [])
 
+
+  // convertinfg data in grid and flex format
   useEffect(() => {
     // grid Data
     // converting object(movieData) data into array data 
@@ -77,6 +84,8 @@ export default function ByLanguagePage() {
 
   }, [genres, movieData])
 
+  
+  // genres option data
   const genresOptions = [
     { value: "28", label: "Action" },
     { value: "12", label: "Adventure" },

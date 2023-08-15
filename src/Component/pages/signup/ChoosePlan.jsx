@@ -12,12 +12,15 @@ export default function ChoosePlan() {
   const [flag,setFlag]=useState(false)
   const Navigate =useNavigate()
 
+  // data for cards
   const dataArray = [
                     { plan: 'Premium', price: 649, description: ['Our best video quality in 4K and HDR', 'Watch on your TV, computer, mobile phone and tablet'] },
                     { plan: 'Standard', price: 499, description: ['Great video quality in 1080p', 'Watch on your TV, computer, mobile phone and tablet'] },
                     { plan: 'Budget', price: 199, description: ['Good video quality in 720p', 'Watch on your TV, computer, mobile phone and tablet'] },
                     { plan: 'Mobile', price: 149, description: ['Good video quality in 480p', 'Watch on your mobile phone and tablet'] }  ]
 
+                    
+    // to select card on  clicking card 
     function handleClick(){
       setFlag(true)
 

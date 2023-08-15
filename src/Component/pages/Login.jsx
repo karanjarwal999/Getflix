@@ -14,6 +14,8 @@ export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
 
+
+  // function to send toast
   function sendToast(message, status) {
     toast({
       title: message,
@@ -24,11 +26,13 @@ export default function Login() {
     })
   }
 
+  // login handler function
   function login(e) {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         sendToast('login sucessfully', 'success')
+        setTimeout(() =>{navigate('/')},1000)
       })
       .catch((error) => {
         sendToast(error.message,'warning')
@@ -36,20 +40,22 @@ export default function Login() {
 
   }
 
-
+  // handel bottom caption display
   function showCaptchInfo() {
     document.getElementById('CaptchInfo').style.display = 'block'
     document.getElementById('HideCatchButton').style.display = 'none'
   }
 
+  // move up Overlay text of input text on focus
   function InputOverlay(elementClass) {
     let Overlay = document.getElementsByClassName(elementClass)
-    Overlay[0].style.top = '22px'
+    Overlay[0].style.top = '28px'
     Overlay[0].style.fontSize = '13px'
 
     document.querySelector(`.${style.AfterForm}>div>input`).checked = true;
   }
 
+  // function that check input value of empty then manage Overlay text
   function InputBlur(elementClass, e) {
     if (e.target.value === '') {
       let Overlay = document.getElementsByClassName(elementClass)
@@ -61,10 +67,12 @@ export default function Login() {
     }
   }
 
+  // make input focus on clicking any overlay
   function OverlayClick(elementId) {
     document.getElementById(elementId).focus()
   }
 
+  // validate tha password
   function passwordValidate(e) {
     let alertMessage = document.getElementsByClassName(`${style.passwordMessage}`)[0]
     if (e.target.value.length < 4) {
@@ -74,8 +82,8 @@ export default function Login() {
     }
   }
 
+  // send toast as for password reset
   function forgetpassword() {
-
     if (email.length === 0) {
       sendToast('Please enter email address', 'warning')
     } else {
@@ -126,7 +134,7 @@ export default function Login() {
             </div>
 
 
-            {/* form bottom des */}
+            {/* form bottom div */}
             <div className={style.formBottom}>
               <p> New to Getflix? <b onClick={() => navigate("/signup")}>Sign up now</b>.</p>
               <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <span id='HideCatchButton' onClick={() => showCaptchInfo()}>Learn more.</span></p>
@@ -135,7 +143,7 @@ export default function Login() {
           </form>
         </div>
 
-
+        {/* footer */}
         <footer className={style.footer}>
           <div className={style.FooterBlackBackground}></div>
           <div className={style.footerDiv}>

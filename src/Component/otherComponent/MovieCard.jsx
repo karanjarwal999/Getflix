@@ -47,8 +47,8 @@ export default function MovieCard({ data, index, ManageModal, category, released
       // setting time interveal to api request 
       setTimeInterval(setTimeout(() => {
         console.log('fetchinf Data.....')
-        // fetchVedio()
-        setVedioId('notFound')
+        fetchVedio()
+        // setVedioId('notFound')
       }, 2000))
     }
   }

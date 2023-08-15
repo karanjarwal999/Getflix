@@ -14,6 +14,7 @@ export default function HomePage() {
   const [RandomNumber, setRandomNumber] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [expandModal, setExpandModal] = useState(false)
+  const [bannerLoaded,serBannerLoaded]=useState(false)
   
   
   // getting data from store
@@ -21,11 +22,15 @@ export default function HomePage() {
   const myLiked = useSelector((store) => store.MyLiked)
   const movieData = useSelector((store) => store.data)
 
+
+  // setting random movie for banner
   if (movieData.length > 0 && bannerMovie === '') {
     setBannerMovie(movieData[0]?.data[Math.floor(Math.random() * (20))])
+    setTimeout(() =>{serBannerLoaded(true)},0)
   }
 
 
+  // manage popup modal 
   async function ManageModal(id, vedioId, category) {
     onClose()
     setRandomNumber(Math.floor(Math.random()*7))
@@ -40,8 +45,8 @@ export default function HomePage() {
       .then((res) => {
         // checking for vedioid , if not call the function to get id
         if (vedioId === '') {
-          setModalData({ data: res.data, vedioId: 'notFound', category:category||res.data.genres[0].name })
-          // fetchVedio(res.data,category)
+          // setModalData({ data: res.data, vedioId: 'notFound', category:category||res.data.genres[0].name })
+          fetchVedio(res.data,category)
           onOpen()
         } else {
           setModalData({ data: res.data, vedioId: vedioId, category:category||res.data.genres[0].name })
@@ -49,12 +54,16 @@ export default function HomePage() {
         }
       })
 
+
+    // fetching vedio id from youtube api
     function fetchVedio(data, category) {
       axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
     }
   }
 
+
+  // scrolling to top on page load
   useEffect(()=>{
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },[])
@@ -65,13 +74,13 @@ export default function HomePage() {
       {/* creting top banner */}
       <div className={style.banner}>
 
-        {bannerMovie.image?.length > 0 ?
+        {bannerLoaded ?
           // deu to this condition it will show black background instead of img when data is not fetched
           <img src={`https://image.tmdb.org/t/p/original${bannerMovie.image}`} alt="" /> :
           <p style={{paddingTop: '56.28%'}} className={style.bannerReplacement}></p>
         }
 
-        {/* taking a p tag to give image blackish effect */}
+        {/* taking a p tag to give image blackish effect to banner */}
         <p className={style.blurBackground}></p>
 
         {bannerMovie.title?.length > 0 ?

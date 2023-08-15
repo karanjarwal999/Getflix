@@ -22,6 +22,7 @@ export default function Search() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isLoading, setIsloading] = useState({ status: false, "loading": false })
 
+  // to add input event handler that cahange serachparams
   useEffect(() => {
     let searchbar = document.getElementById('searchbar')
     searchbar.addEventListener('input', changeparam)
@@ -31,6 +32,7 @@ export default function Search() {
     }
   }, [])
 
+  // function to change searchParams
   function changeparam(e) {
     if (timeInterval) {
       clearTimeout(timeInterval);
@@ -40,13 +42,13 @@ export default function Search() {
     }, 3000))
   }
 
-
+  // to fetch vedio Id from youtube api
   const fetchVedio = (data, category) => {
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
   }
 
-
+  //  manage modal 
   const ManageModal = async (id, vedioId, category) => {
     onClose()
     setRandomNumber(Math.floor(Math.random() * 7))
@@ -62,8 +64,8 @@ export default function Search() {
         console.log(res.data.genres[0].name);
         // checking for vedioid , if not call the function to get id
         if (vedioId === '') {
-          setModalData({ data: res.data, vedioId: 'notFound', category: res.data.genres[0].name })
-          // fetchVedio(res.data,category)
+          // setModalData({ data: res.data, vedioId: 'notFound', category: res.data.genres[0].name })
+          fetchVedio(res.data,category)
           onOpen()
         } else {
           setModalData({ data: res.data, vedioId: vedioId, category: res.data.genres[0].name })
@@ -73,7 +75,7 @@ export default function Search() {
   }
 
 
-
+  // sorting data as per searchParams 
   useEffect(() => {
     if (searchParams.get('q') === '') {
       setIsloading((prev) => ({ ...prev, status: true, "loading": false }))
@@ -93,7 +95,12 @@ export default function Search() {
     }
   }, [searchParams])
 
+//  scrolling to top on category changes
+  useEffect(()=>{
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },[searchParams])
 
+  
   return (
     <Div>
       <div className='myList_container'>

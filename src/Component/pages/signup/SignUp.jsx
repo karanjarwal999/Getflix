@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { UserSingup } from '../../../Context/SignupContext'
 import { useNavigate } from 'react-router-dom'
 import { getAuth, signInAnonymously } from "firebase/auth";
+import { useToast } from '@chakra-ui/react'
 
 
 
@@ -15,8 +16,9 @@ export default function SignUp() {
   const [UserEmail, SetUserEmail] = useState('')
   const Navigate=useNavigate()
   const auth = getAuth();
+  const toast = useToast()
 
-
+  // mageage bottom accordation 
   function showAccordation(value) {
     if (Accordation === value) {
       SetAccordion(0)
@@ -25,6 +27,8 @@ export default function SignUp() {
     }
   }
 
+
+  // move overlay on input focus 
   function InputOverlay() {
     let Overlay = document.getElementsByClassName(`${style.emailOverlay}`)
     Overlay[0].style.top = '12px'
@@ -33,6 +37,7 @@ export default function SignUp() {
     Overlay[1].style.fontSize = '13px'
   }
 
+  // mage oberlay to when input unfocus
   function InputBlur(e) {
     if(e.target.value===''){
     let Overlay = document.getElementsByClassName(`${style.emailOverlay}`)
@@ -43,6 +48,7 @@ export default function SignUp() {
     }
   }
 
+  // email validate and setting email
   function SetEmailAndNavigate(){
     console.log(UserEmail.includes('@'))
     if(UserEmail===''||!UserEmail.includes('@')){alert('Please enter email address')}
@@ -52,13 +58,20 @@ export default function SignUp() {
     }
   }
 
+  // huest login or firebase Anonymous login
   function handleGuestLogin() {
     signInAnonymously(auth)
     .then(()=>{
-      Navigate('/home')
+      Navigate('/')
     })
     .catch(()=>{
-      alert('something went wrong,please try again')
+      toast({
+        title: "Something went wrong, Please try again",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: 'top'
+      })
     })
   }
 
