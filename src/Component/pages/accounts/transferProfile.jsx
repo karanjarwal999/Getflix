@@ -151,24 +151,28 @@ nav>a:hover,.centerDiv>p:hover,.centerDiv>span:hover{
         width: 100px;
     } 
     .centerDiv>h2{
-   font-size: 25px;
+    font-size: 25px;
     }
     .descriptionDiv>h3{
-    font-size: 20px;
-    font-weight: 600;
+        font-size: 20px;
+        font-weight: 600;
     }
     .descriptionDiv>div{
-    margin:10px;
-    font-size: 17px;
-    line-height: 22px;
-    grid-template-columns: 10% 88%;
-    row-gap: 15px;
-   
+        margin:10px;
+        font-size: 17px;
+        line-height: 22px;
+        grid-template-columns: 10% 88%;
+        row-gap: 15px;
     }
     .centerDiv{
-    padding: 20px 10px 40px;
+        padding: 20px 10px 40px;
     }
-
+    .centerDiv>div:nth-child(2){
+        margin: 20px 0px;
+    }
+    .centerDiv>p{
+        padding-bottom: 25px;
+    }
 }
 @media screen and (max-width:400px){
     .centerDiv>div:nth-child(2){

@@ -206,4 +206,133 @@ footer>hr{
     margin:16px 0px 40px 0px
 }
 
+@media screen and (max-width:1350px){
+    .Help_AllQuestions{
+    grid-template-columns:68% 28%;
+    justify-content: space-between;
+}
+    .Help_Opretions{
+        grid-template-columns:repeat(2,46%);
+    }
+}
+@media screen and (max-width:900px){
+    .Help_AllQuestions{
+        padding: 30px 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .Help_Opretions{
+        display: grid;
+        grid-template-columns:repeat(2,48%);
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    nav>img{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width:750px){
+    .Help_quickQuestion>div{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 16px;
+    }
+    .Help_quickQuestion>div>p{
+        padding: 10px;
+        box-shadow: rgba(50, 50, 50, 0.2) 0px 2px 10px 0px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+    nav>input{
+        width: 80%;
+        padding:9px 16px 9px 7%;
+        background-size:5%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .Help_Opretions{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    footer>h4{
+        display: block;
+        margin-right: 0px;
+        margin-bottom:10px;
+    }
+    footer>button{
+        width: 100%;
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+    }
+    nav>img{
+        width: 100px;
+    }
+    nav>h2{
+        text-align: start;
+        padding-bottom: 0px;
+        padding-top: 20px;
+    }
+    nav>input{
+        width: 100%;
+        padding:9px 16px 9px 7%;
+        background-size:5%;
+    }
+}
+
+
+@media screen and (max-width:400px){
+    .Help_Opretions>div>p,.Help_QuickLinks>p{
+        font-size: 14px;
+        margin-bottom: 7px;
+    }
+    .Help_Opretions>div>h2,.Help_QuickLinks>h2{
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .Help_Opretions{
+       gap: 15px;
+    }
+    footer>p{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    footer{
+        padding: 24px 5% 20px 5%;
+        background: linear-gradient(to right top,black,black,black,rgb(114, 9, 9));
+    }
+    .Help_quickQuestion>h3{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .Help_quickQuestion>p{
+        font-size: 12px;
+    }
+    .Help_quickQuestion>div>p{
+        padding: 7px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    footer>hr{
+        margin:16px 0px 25px 0px
+    }
+    nav>img{
+        width: 100px;
+    }
+    nav>h2{
+        font-size: 22px;
+    }
+    nav>input{
+        padding:9px 5px 9px 7%;
+        background-size:5%;
+        font-size: 15px;
+    }
+
+}
 `

@@ -119,7 +119,7 @@ export default function HomeNavbar() {
                   <span className="material-symbols-outlined">swap_horizontal_circle</span>
                   <p onClick={()=>Navigate('/transferProfile')}>Transfer Profile</p>
                   <span className="material-symbols-outlined">person</span>
-                  <p>Account</p>
+                  <p onClick={()=>Navigate('/account')}>Account</p>
                   <span className="material-symbols-outlined">help</span>
                   <p onClick={()=>Navigate('/help')}>Help Center</p>
                 </div>

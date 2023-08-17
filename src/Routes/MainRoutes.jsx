@@ -12,6 +12,7 @@ import Logoutpage from '../Component/pages/logoutpage'
 import PrivateRoute from './PrivateRoute'
 import TransferProfile from '../Component/pages/accounts/transferProfile'
 import HelpPage from '../Component/pages/accounts/HelpPage'
+import EditAccount from '../Component/pages/accounts/EditAccount'
 
 
 export default function MainRoutes() {
@@ -27,6 +28,7 @@ export default function MainRoutes() {
         <Route exact path='/signup/plan' element={<SignupContext><ChoosePlan/></SignupContext>}/>
         <Route path='/transferProfile' element={<TransferProfile/>}/>
         <Route path='/help' element={<HelpPage/>}/>
+        <Route path='/account' element={<EditAccount/>}/>
     </Routes>
   )
 }

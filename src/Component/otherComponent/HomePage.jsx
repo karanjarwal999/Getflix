@@ -26,7 +26,7 @@ export default function HomePage() {
   // setting random movie for banner
   if (movieData.length > 0 && bannerMovie === '') {
     setBannerMovie(movieData[0]?.data[Math.floor(Math.random() * (20))])
-    setTimeout(() =>{serBannerLoaded(true)},0)
+    setTimeout(() =>{serBannerLoaded(true)},1000)
   }
 
 
