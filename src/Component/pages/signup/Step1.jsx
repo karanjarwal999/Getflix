@@ -12,6 +12,7 @@ import { useToast } from '@chakra-ui/react'
 
 export default function Step1() {
   const { userData, setUserData } = useContext(UserSingup)
+  console.log(userData)
   const [isLoding, SetIsLoading] = useState(false)
   const Navigate = useNavigate()
   const toast = useToast()

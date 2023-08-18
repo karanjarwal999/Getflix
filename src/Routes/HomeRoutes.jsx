@@ -5,7 +5,6 @@ import NewPopular from "../Component/otherComponent/NewPopular";
 import HomePage from "../Component/otherComponent/HomePage";
 import MoviesPage from "../Component/otherComponent/MoviesPage";
 import ByLanguagePage from "../Component/otherComponent/ByLanguagePage";
-import TransferProfile from "../Component/pages/accounts/transferProfile";
 
 export default function HomeRoutes() {
     return (

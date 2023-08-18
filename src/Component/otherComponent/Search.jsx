@@ -40,7 +40,7 @@ export default function Search() {
     }
     setTimeInterval(setTimeout(() => {
       setSearchParams({ q: e.target.value })
-    }, 3000))
+    }, 1500))
   }
 
   // to fetch vedio Id from youtube api

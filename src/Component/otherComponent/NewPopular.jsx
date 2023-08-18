@@ -87,12 +87,6 @@ export default function Movies() {
               <span className={style.modalImageOverlay}></span>
               <div className={style.modalIframeOverlay}>
                 <h3>{ModalData.data?.title}</h3>
-                {ModalData.released ?
-                  <div className={style.ReminderBtn}>
-                    {myReminder.includes(ModalData.data?.id) ?
-                      <button onClick={() => dispatch({ type: 'update_Reminder', payload: ModalData.data?.id })}><span class="material-symbols-outlined">notifications_active</span>Reminder set</button> :
-                      <button onClick={() => dispatch({ type: 'update_Reminder', payload: ModalData.data?.id })}><span class="material-symbols-outlined">notification_add</span>Remind me</button>}
-                  </div> :
                   <div className={style.ModalbuttonDiv}>
                     <button onClick={playVideofullScreen}><span id='boldIcon' className="material-symbols-outlined">play_arrow</span>Play</button>
                     <button onClick={() => dispatch({ type: 'update_MyList', payload: ModalData.data?.id })}>
@@ -102,8 +96,7 @@ export default function Movies() {
                     </button>
                     <button onClick={() => dispatch({ type: 'update_MyLiked', payload: ModalData.data?.id })}>
                       <span id={myLiked.includes(ModalData.data?.id) ? 'boldIcon' : ''} className="material-symbols-outlined">favorite</span></button>
-                  </div>}
-
+                  </div>
               </div>
               <button onClick={onClose}>X</button>
             </div>
@@ -150,7 +143,7 @@ export default function Movies() {
                   : null)}
               </div>
             </div>
-            <button className={style.expandBtn} onClick={() => setExpandModal((prev) => !prev)}><span class="material-symbols-outlined">{expandModal ? 'expand_circle_up' : 'expand_circle_down'}</span></button>
+            <button className={style.expandBtn} onClick={() => setExpandModal((prev) => !prev)}><span className="material-symbols-outlined">{expandModal ? 'expand_circle_up' : 'expand_circle_down'}</span></button>
             <div className={style.modalBottomInfo}>
               <h2>About {ModalData.data?.title}</h2>
               <p>Production Companies : {ModalData.data?.production_companies.map((data, ind) => <span key={ind}>{data.name}, </span>)}</p>

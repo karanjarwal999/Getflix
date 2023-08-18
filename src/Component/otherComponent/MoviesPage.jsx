@@ -47,7 +47,7 @@ export default function ByLanguagePage() {
         // checking for vedioid , if not call the function to get id
         if (vedioId === '') {
           // setModalData({ data: res.data, vedioId: 'notFound', category: res.data.genres[0].name })
-          fetchVedio(res.data,category)
+          fetchVedio(res.data,res.data.genres[0].name)
           onOpen()
         } else {
           setModalData({ data: res.data, vedioId: vedioId, category: res.data.genres[0].name })

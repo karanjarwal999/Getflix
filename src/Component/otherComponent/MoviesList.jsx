@@ -3,12 +3,12 @@ import MovieCard from './MovieCard'
 import style from '../../Styles/otherComponent/MovieList.module.css'
 import { styled } from 'styled-components'
 
-export default function MoviesList({ MovieData,ManageModal,released}) {
+export default function MoviesList({ MovieData,ManageModal}) {
   const { title, data } = MovieData
   const listRef = useRef('')
   let [scrollvalue, setScrollValue] = useState(0)
   
-
+  
   // to scroll by buttons
   function scrolllist(direction) {
     let img = document.querySelector(`.${style.moviesList}>div>img`)
@@ -36,7 +36,7 @@ export default function MoviesList({ MovieData,ManageModal,released}) {
         {
           data?.map((singledata, index) =>
            singledata.image?
-           <MovieCard key={singledata.id} category={title}  ManageModal={ManageModal} data={singledata} index={index === 0} released={released}/>:null)
+           <MovieCard key={singledata.id} category={title}  ManageModal={ManageModal} data={singledata} index={index === 0}/>:null)
         }
       </Div>
     </div>

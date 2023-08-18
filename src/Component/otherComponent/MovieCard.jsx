@@ -4,7 +4,7 @@ import { Tooltip } from '@chakra-ui/react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function MovieCard({ data, index, ManageModal, category, released }) {
+export default function MovieCard({ data, index, ManageModal, category,}) {
   const [vedioId, setVedioId] = useState('')
   const [hover, setHover] = useState(false)
   const [timeInterval, setTimeInterval] = useState()
@@ -49,7 +49,7 @@ export default function MovieCard({ data, index, ManageModal, category, released
         console.log('fetchinf Data.....')
         fetchVedio()
         // setVedioId('notFound')
-      }, 2000))
+      }, 1000))
     }
   }
 
@@ -69,12 +69,12 @@ export default function MovieCard({ data, index, ManageModal, category, released
           <iframe title='movie' src={`https://www.youtube.com/embed/${vedioId}?showinfo=0&controls=0&autoplay=1&mute=1`}></iframe>
         </div>
         :
-        <img onClick={() => ManageModal(data.id, vedioId, category,released)} className={style.cardImage} src={`https://image.tmdb.org/t/p/original${data.image}`} alt="" />
+        <img onClick={() => ManageModal(data.id, vedioId, category)} className={style.cardImage} src={`https://image.tmdb.org/t/p/original${data.image}`} alt="" />
       }
 
       <p className={style.imageReplacement}>
         {vedioId !== '' && hover && vedioId !== 'notFound' ?
-          <img style={{ borderRadius: '5px' }} src={`https://image.tmdb.org/t/p/original${data.image}`} alt={data.title} />
+          <img onClick={() => ManageModal(data.id, vedioId, category)} style={{ borderRadius: '5px' }} src={`https://image.tmdb.org/t/p/original${data.image}`} alt={data.title} />
           : `${data.title}`}
       </p>
       {/* p tag to display titile when image is failed to load */}
@@ -83,13 +83,6 @@ export default function MovieCard({ data, index, ManageModal, category, released
       {/* botton btns that display on hover */}
       <div className={style.buttonDiv} >
         <div>
-          {released ?
-            <Tooltip hasArrow label={myReminder.includes(data.id) ? 'Reminder set' : 'Remind me'} fontSize='20px' fontWeight={'600'} bg='white' color='black' placement='top'>
-              <button onClick={() => dispatch({ type: 'update_Reminder', payload: data.id })} style={{ color: 'white' }}>
-                {myReminder.includes(data.id) ? <span class="material-symbols-outlined">notifications_active</span> : <span class="material-symbols-outlined">notification_add</span>}
-              </button>
-            </Tooltip>
-            :
             <div>
               {/* buttons  are wraped by tool tip here  ( tololtip-->button-->span ) */}
               <button style={{ color: 'white' }} onClick={playVideofullScreen}>
@@ -108,9 +101,9 @@ export default function MovieCard({ data, index, ManageModal, category, released
                     style={{ color: `${myLiked.includes(data.id) ? 'white' : 'rgb(183, 182, 182)'}` }} className="material-symbols-outlined">favorite</span>
                 </button>
               </Tooltip>
-            </div>}
+            </div>
           <Tooltip hasArrow label='More info' fontSize='20px' fontWeight={'600'} bg='white' color='black' placement='top'>
-            <button onClick={() => ManageModal(data.id, vedioId, category,released)}>
+            <button onClick={() => ManageModal(data.id, vedioId, category)}>
               <span className="material-symbols-outlined">arrow_drop_down_circle</span>
             </button>
           </Tooltip>

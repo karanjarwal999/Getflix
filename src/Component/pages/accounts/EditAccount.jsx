@@ -4,23 +4,27 @@ import { Auth } from '../../firebaseConfig'
 import SingupFooter from '../signup/SingupFooter'
 import { styled } from 'styled-components'
 import logo from '../../../Logo/GETFLIX-logo.png'
-import { Badge } from '@chakra-ui/react'
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Badge, Button, useDisclosure } from '@chakra-ui/react'
+import { signOut } from 'firebase/auth'
 
 export default function EditAccount() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = React.useRef()
     const Navigate = useNavigate()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [isAuth, setIsAuth] = useState(true)
-    Auth.onAuthStateChanged((user) => { setName(user.displayName); setEmail(user.email) })
-    Auth.onAuthStateChanged((user) => !user ? setIsAuth(false) : null)
+    Auth.onAuthStateChanged((user) => !user ? Navigate('/signup') : null)
+    Auth.onAuthStateChanged((user) => {
+        setName(user.displayName); setEmail(user.email);
+        if (user.isAnonymous) {
+                onOpen()
+        }
+    })
 
-    if (!isAuth) {
-        Navigate('/signup')
-    }
     return (
         <Div>
             <nav>
-                <img src={logo} alt="" />
+                <img onClick={()=>Navigate('/')} src={logo} alt="" />
             </nav>
             <div className='account_outerDiv'>
                 <div className='account_highScreen'>
@@ -243,6 +247,29 @@ export default function EditAccount() {
                 </div>
             </div>
             <SingupFooter />
+
+            <AlertDialog
+                motionPreset='slideInBottom'
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+                isOpen={isOpen}
+                isCentered>
+                <AlertDialogOverlay bg='rgba(0, 0, 0, 0.813)'/>
+                <AlertDialogContent>
+                    <AlertDialogHeader pb='0px'>Anonymous Call</AlertDialogHeader>
+                    <AlertDialogBody>
+                        You can't access this page deu to Anonymous account
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={()=>Navigate('/')}>
+                            Back to Home
+                        </Button>
+                        <Button colorScheme='red' ml={3} onClick={()=>{signOut(Auth);Navigate('/signup/step1')}}>
+                            Create Account
+                        </Button>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </Div>
     )
 }

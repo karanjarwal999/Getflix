@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../../Logo/GETFLIX-logo.png'
 import { Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverTrigger } from '@chakra-ui/react'
-import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate} from 'react-router-dom'
 import style from '../../Styles/otherComponent/HomeNav.module.css'
 import { useState } from 'react'
+import { Auth } from '../firebaseConfig'
+import { UserSingup } from '../../Context/SignupContext'
 
 export default function HomeNavbar() {
   const Navigate=useNavigate()
   const Location=useLocation()
   const [prevRoute, setPrevRoute] = useState('')
   const [timeInterval, setTimeInterval] = useState()
-
 
   // dummy data for natification hover
   let notification = [{
@@ -27,9 +28,9 @@ export default function HomeNavbar() {
     }
     setTimeInterval(setTimeout(() => {
       handleSearch(e)
-    },3000))
+    },1500))
   }
-  
+
 
   // function to handle search
   function handleSearch(e){

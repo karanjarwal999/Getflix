@@ -4,17 +4,21 @@ import logo from '../../../Logo/GETFLIX-logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { Auth } from '../../firebaseConfig'
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useDisclosure } from '@chakra-ui/react'
+import { signOut } from 'firebase/auth'
 
 export default function TransferProfile() {
-    const Navigate=useNavigate()
-    const [name,setName]=useState('')
-    const [isAuth,setIsAuth]=useState(true)
-    Auth.onAuthStateChanged((user)=>{setName(user.displayName)})
-    Auth.onAuthStateChanged((user)=>!user?setIsAuth(false):null)
-
-    if(!isAuth){
-        Navigate('/signup')
-    }
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const cancelRef = React.useRef()
+    const Navigate = useNavigate()
+    const [name, setName] = useState('')
+    Auth.onAuthStateChanged((user) => !user ? Navigate('/signup') : null)
+    Auth.onAuthStateChanged((user) => {
+        setName(user.displayName);
+        if (user.isAnonymous) {
+                onOpen()
+        }
+    })
 
     return (
         <Div>
@@ -42,6 +46,28 @@ export default function TransferProfile() {
                 </div>
             </div>
             <SingupFooter />
+            <AlertDialog
+                motionPreset='slideInBottom'
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+                isOpen={isOpen}
+                isCentered>
+                <AlertDialogOverlay bg='rgba(0, 0, 0, 0.813)'/>
+                <AlertDialogContent>
+                    <AlertDialogHeader pb='0px'>Anonymous Call</AlertDialogHeader>
+                    <AlertDialogBody>
+                        You can't access this page deu to Anonymous account
+                    </AlertDialogBody>
+                    <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={()=>Navigate('/')}>
+                            Back to Home
+                        </Button>
+                        <Button colorScheme='red' ml={3} onClick={()=>{signOut(Auth);Navigate('/signup/step1')}}>
+                            Create Account
+                        </Button>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </Div>
     )
 }
