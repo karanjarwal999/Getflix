@@ -105,3 +105,13 @@ const New_popular = async (dispatch) => {
 }
 
 
+export function playVideofullScreen() {
+  let iframe = document.getElementById('videoFrame')
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.webkitRequestFullscreen) { /* Safari */
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { /* IE11 */
+    iframe.msRequestFullscreen();
+  }
+}

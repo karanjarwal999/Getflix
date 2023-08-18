@@ -7,6 +7,7 @@ import MovieCard from './MovieCard'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Tooltip, useDisclosure } from '@chakra-ui/react'
 import style from '../../Styles/otherComponent/Homepage.module.css'
 import { useSearchParams } from 'react-router-dom'
+import { playVideofullScreen } from '../../store/dataFunction'
 
 export default function Search() {
   const dispatch = useDispatch()
@@ -50,7 +51,6 @@ export default function Search() {
 
   //  manage modal 
   const ManageModal = async (id, vedioId, category) => {
-    onClose()
     setRandomNumber(Math.floor(Math.random() * 7))
     setExpandModal(false)
     // getting more data of movie
@@ -100,6 +100,7 @@ export default function Search() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },[searchParams])
 
+ 
   
   return (
     <Div>
@@ -131,14 +132,14 @@ export default function Search() {
               {ModalData.vedioId === 'notFound' ?
                 <img className={style.modalPoster} src={`https://image.tmdb.org/t/p/original${ModalData.data?.backdrop_path}`} alt={ModalData.title} /> :
                 <div className={style.modalIframe}>
-                  <iframe title='movie' src={`https://www.youtube.com/embed/${ModalData.vedioId}?showinfo=0&controls=0&autoplay=1&mute=1&loop=1`}></iframe>
+                  <iframe id='videoFrame' title='movie' src={`https://www.youtube.com/embed/${ModalData.vedioId}?showinfo=0&controls=0&autoplay=1&mute=1&loop=1`}></iframe>
                 </div>
               }
               <span className={style.modalImageOverlay}></span>
               <div className={style.modalIframeOverlay}>
                 <h3>{ModalData.data?.title}</h3>
                 <div className={style.ModalbuttonDiv}>
-                  <button><span id='boldIcon' className="material-symbols-outlined">play_arrow</span>Play</button>
+                  <button onClick={playVideofullScreen}><span id='boldIcon' className="material-symbols-outlined">play_arrow</span>Play</button>
                   <button onClick={() => dispatch({ type: 'update_MyList', payload: ModalData.data?.id })}>
                     {storeList.includes(ModalData.data?.id) ?
                       <span className="material-symbols-outlined">check_circle</span> :

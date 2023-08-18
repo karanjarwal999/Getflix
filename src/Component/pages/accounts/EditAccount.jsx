@@ -9,8 +9,9 @@ import { Badge } from '@chakra-ui/react'
 export default function EditAccount() {
     const Navigate = useNavigate()
     const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
     const [isAuth, setIsAuth] = useState(true)
-    Auth.onAuthStateChanged((user) => { setName(user.displayName) })
+    Auth.onAuthStateChanged((user) => { setName(user.displayName); setEmail(user.email) })
     Auth.onAuthStateChanged((user) => !user ? setIsAuth(false) : null)
 
     if (!isAuth) {
@@ -23,119 +24,222 @@ export default function EditAccount() {
             </nav>
             <div className='account_outerDiv'>
                 <div className='account_highScreen'>
-                   <h1 style={{color:'black'}}>Account</h1>
-                   <p style={{color:'black'}}><span   className="material-symbols-outlined">video_library</span>Member Since Jan 2023</p>
-                   <hr />
-                   <div className='Account_cardDiv'>
-                     <div className='account_leftDiv'>
-                        <h2>MEMBERSHIP & BILLING</h2>
-                        <button>Cancel Membership</button>
-                     </div>
-                     <div className='Acount_flexDiv'>
-                        <div>
-                            <p style={{color:'black'}}><b>santoshkakarwal1@gmail.com</b></p>
-                            <p>Password: ********</p>
-                            <p>Phone: </p>
+                    <h1 style={{ color: 'black' }}>Account</h1>
+                    <p style={{ color: 'black' }}><span className="material-symbols-outlined">video_library</span>Member Since Jan 2023</p>
+                    <hr />
+                    <div className='Account_cardDiv'>
+                        <div className='account_leftDiv'>
+                            <h2>MEMBERSHIP & BILLING</h2>
+                            <button>Cancel Membership</button>
                         </div>
-                        <div>
-                            <p className='blueText'>Change email</p>
-                            <p className='blueText'>Change password</p>
-                            <p className='blueText'>Add phone number</p>
-                        </div>
-                     </div>
-                     <hr />
-                     <div className='Acount_flexDiv'>
-                        <div style={{color:'black'}}><span style={{position:'relative',top:'5px'}}   className="material-symbols-outlined">qr_code_scanner</span> s•••@ybl</div>
-                        <div>
-                            <p className='blueText'>Manage payment info</p>
-                            <p className='blueText'>Billing details</p>
-                        </div>
-                     </div>
-                     <hr />
-                     <div className='Acount_flexDiv'>
-                        <p></p>
-                        <p className='blueText'>Redeem gift card or promo code</p>
-                     </div>
-                   </div>
-                   <hr />
-                   <div className='Account_cardDiv'>
-                     <div className='account_leftDiv'>
-                        <h2>PLAN DETAILS</h2>
-                     </div>
-                     <div className='Acount_flexDiv'>
-                        <div>
-                            <p style={{color:'black'}}><b>Basic</b> <span style={{position:'relative',top:'9px',fontSize:'30px',marginLeft:'10px'}}   className="material-symbols-outlined">hd</span></p>
-                        </div>
-                        <div>
-                            <p className='blueText'>Change plan</p>
-                        </div>
-                     </div>
-                   </div>
-                   <hr />
-                   <div className='Account_cardDiv'>
-                     <div className='account_leftDiv'>
-                        <h2>SECURITY & PRIVACY</h2>
-                     </div>
-                     <div className='Acount_flexDiv'>
-                        <div className='account_LimitP'>
-                            <p >Control access to this account, view the most recently active devices and more.</p>
-                        </div>
-                        <div>
-                            <p className='blueText'>Manage access and devices</p>
-                            <p className='blueText'>Sign out of all devices</p>
-                        </div>
-                     </div>
-                   </div>
-                   <hr />
-                   <div className='Account_cardDiv'>
-                     <div className='account_leftDiv'>
-                        <h2>PROFILE & PARENTAL CONTROLS</h2>
-                     </div>
-                     <div className='Acount_flexDiv'>
-                        <div style={{display:'flex'}}>
-                            <img  src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABR2_CnwLC_fGf1EGaAxpU3cAzAwjj4q3yVg_n99iZREET5eSWAZ_B0kemHB5GOEPXtk7ekGULELzDrWZk4WCAULubeSwxTg_UQ.png?r=229" alt="" />
+                        <div className='Acount_flexDiv'>
                             <div>
-                                <p style={{color:'black'}}><b>Saantosh</b></p>
-                                <p>All Maturity Ratings</p>
+                                <p style={{ color: 'black' }}><b>{email}</b></p>
+                                <p>Password: ********</p>
+                                <p>Phone: </p>
+                            </div>
+                            <div>
+                                <p className='blueText'>Change email</p>
+                                <p className='blueText'>Change password</p>
+                                <p className='blueText'>Add phone number</p>
                             </div>
                         </div>
-                        <div className='account_expandingDiv'>
-                        <span   className="material-symbols-outlined">keyboard_arrow_down</span>
-                        </div>
-                     </div>
-                     <hr style={{margin:'10px 0px'}}/>
-                     <div className='Acount_flexDiv'>
-                        <div style={{display:'flex'}}>
-                            <img src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbqbhi8-Nn1PYzNqtVnV-IS4araSjQ5-WZZA5ysMX8ft4CtovMvyxSxWryGtjD7vlbgpCsSHtgN0BheEkEyHYdxAH5nYD8PpcA.png?r=54d" alt="" />
+                        <hr />
+                        <div className='Acount_flexDiv'>
+                            <div style={{ color: 'black' }}><span style={{ position: 'relative', top: '5px' }} className="material-symbols-outlined">qr_code_scanner</span> s•••@ybl</div>
                             <div>
-                                <p>बच्चों के लिए</p>
-                                <p>U/A 7+ and below</p>
+                                <p className='blueText'>Manage payment info</p>
+                                <p className='blueText'>Billing details</p>
                             </div>
                         </div>
-                        <div className='account_expandingDiv'>
-                        <span   className="material-symbols-outlined">keyboard_arrow_down</span>
+                        <hr />
+                        <div className='Acount_flexDiv'>
+                            <p></p>
+                            <p className='blueText'>Redeem gift card or promo code</p>
                         </div>
-                     </div>
-                   </div>
-                   <hr />
-                   <div className='Account_cardDiv'>
-                     <div className='account_leftDiv'>
-                        <h2>SETTINGS</h2>
-                     </div>
-                     <div className='Acount_flexDiv'>
-                        <div>
-                            <p className='blueText' style={{textAlign:'start'}}>Turn off profile transfers <Badge ml='1' bg='#0F84FA' color='white'>New</Badge></p>
-                            <p className='blueText' style={{textAlign:'start'}}>Test participation</p>
-                            <p className='blueText' style={{textAlign:'start'}}>Manage download devices</p>
+                    </div>
+                    <hr />
+                    <div className='Account_cardDiv'>
+                        <div className='account_leftDiv'>
+                            <h2>PLAN DETAILS</h2>
                         </div>
-                        <div>
+                        <div className='Acount_flexDiv'>
+                            <div>
+                                <p style={{ color: 'black' }}><b>Basic</b> <span style={{ position: 'relative', top: '9px', fontSize: '30px', marginLeft: '10px' }} className="material-symbols-outlined">hd</span></p>
+                            </div>
+                            <div>
+                                <p className='blueText'>Change plan</p>
+                            </div>
                         </div>
-                     </div>
-                   </div>
-                   <hr />
+                    </div>
+                    <hr />
+                    <div className='Account_cardDiv'>
+                        <div className='account_leftDiv'>
+                            <h2>SECURITY & PRIVACY</h2>
+                        </div>
+                        <div className='Acount_flexDiv'>
+                            <div className='account_LimitP'>
+                                <p >Control access to this account, view the most recently active devices and more.</p>
+                            </div>
+                            <div>
+                                <p className='blueText'>Manage access and devices</p>
+                                <p className='blueText'>Sign out of all devices</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className='Account_cardDiv'>
+                        <div className='account_leftDiv'>
+                            <h2>PROFILE & PARENTAL CONTROLS</h2>
+                        </div>
+                        <div className='Acount_flexDiv'>
+                            <div style={{ display: 'flex' }}>
+                                <img src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABR2_CnwLC_fGf1EGaAxpU3cAzAwjj4q3yVg_n99iZREET5eSWAZ_B0kemHB5GOEPXtk7ekGULELzDrWZk4WCAULubeSwxTg_UQ.png?r=229" alt="" />
+                                <div>
+                                    <p style={{ color: 'black' }}><b>{name}</b></p>
+                                    <p>All Maturity Ratings</p>
+                                </div>
+                            </div>
+                            <div className='account_expandingDiv'>
+                                <span className="material-symbols-outlined">keyboard_arrow_down</span>
+                            </div>
+                        </div>
+                        <hr style={{ margin: '10px 0px' }} />
+                        <div className='Acount_flexDiv'>
+                            <div style={{ display: 'flex' }}>
+                                <img src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbqbhi8-Nn1PYzNqtVnV-IS4araSjQ5-WZZA5ysMX8ft4CtovMvyxSxWryGtjD7vlbgpCsSHtgN0BheEkEyHYdxAH5nYD8PpcA.png?r=54d" alt="" />
+                                <div>
+                                    <p>बच्चों के लिए</p>
+                                    <p>U/A 7+ and below</p>
+                                </div>
+                            </div>
+                            <div className='account_expandingDiv'>
+                                <span className="material-symbols-outlined">keyboard_arrow_down</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className='Account_cardDiv'>
+                        <div className='account_leftDiv'>
+                            <h2>SETTINGS</h2>
+                        </div>
+                        <div className='Acount_flexDiv'>
+                            <div>
+                                <p className='blueText' style={{ textAlign: 'start' }}>Turn off profile transfers <Badge ml='1' bg='#0F84FA' color='white'>New</Badge></p>
+                                <p className='blueText' style={{ textAlign: 'start' }}>Test participation</p>
+                                <p className='blueText' style={{ textAlign: 'start' }}>Manage download devices</p>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
                 <div className="account_smallScreen">
-                    
+                    <h1 style={{ color: 'black' }}>Account</h1>
+                    <p style={{ color: 'black', display: "block", marginLeft: '0px' }}><span className="material-symbols-outlined">video_library</span>Member Since Jan 2023</p>
+                    <div>
+                        <h2>MEMBERSHIP & BILLING</h2>
+                        <p style={{ color: 'black' }}><b>{email}</b></p>
+                        <p>Password: ********</p>
+                        <p>Phone: </p>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Change Email</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Change password</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Add phone number</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Manage payment info</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Billing details</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Redeem gift card or promo code</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <button>Cancel Membership</button>
+                    </div>
+                    <div>
+                        <h2>PLAN DETAILS</h2>
+                        <p><b>BASIC</b><span style={{ position: 'relative', top: '9px', fontSize: '30px', marginLeft: '5px' }} className="material-symbols-outlined">hd</span></p>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Change plan</p>
+                            <span>{'>'}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>SECURITY & PRIVACY</h2>
+                        <p>Control access to this account, view the most recently active devices and more.</p>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Manage access and devices</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Sign out of all devices</p>
+                            <span>{'>'}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>PROFILE & PARENTAL CONTROLS</h2>
+                        <div className='Account_row'>
+                            <div style={{ display: 'flex' }}>
+                                <img src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABR2_CnwLC_fGf1EGaAxpU3cAzAwjj4q3yVg_n99iZREET5eSWAZ_B0kemHB5GOEPXtk7ekGULELzDrWZk4WCAULubeSwxTg_UQ.png?r=229" alt="" />
+                                <div>
+                                    <p style={{ color: 'black' }}><b>{name}</b></p>
+                                    <p>All Maturity Ratings</p>
+                                </div>
+                            </div>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <div style={{ display: 'flex' }}>
+                                <img src="https://occ-0-4875-2164.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbqbhi8-Nn1PYzNqtVnV-IS4araSjQ5-WZZA5ysMX8ft4CtovMvyxSxWryGtjD7vlbgpCsSHtgN0BheEkEyHYdxAH5nYD8PpcA.png?r=54d" alt="" />
+                                <div>
+                                    <p>बच्चों के लिए</p>
+                                    <p>U/A 7+ and below</p>
+                                </div>
+                            </div>
+                            <span>{'>'}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>SETTINGS</h2>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Turn off profile transfers</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Test participation</p>
+                            <span>{'>'}</span>
+                        </div>
+                        <hr />
+                        <div className='Account_row'>
+                            <p>Manage download devices</p>
+                            <span>{'>'}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <SingupFooter />
@@ -167,11 +271,11 @@ const Div = styled.div`
         margin: auto;
         padding:40px 20px 0px 20px;
     }
-    .account_highScreen>h1{
+    .account_highScreen>h1,.account_smallScreen>h1{
         display: inline;
         font-size: 34px;
     }
-    .account_highScreen>p{
+    .account_highScreen>p,.account_smallScreen>p{
         display: inline;
         font-size: 14px;
         margin-left: 20px;
@@ -180,7 +284,7 @@ const Div = styled.div`
         font-weight: 600;
         color: gray;
     }
-    .account_highScreen>p>span{
+    .account_highScreen>p>span,.account_smallScreen>p>span{
         position: relative;
         top: 7px;
         margin-right: 5px;
@@ -242,6 +346,67 @@ const Div = styled.div`
     }
 
 
+
+
+
+    .account_smallScreen{
+        background-color: #F3F3F3;
+        padding: 10px 5%;
+    }
+    .account_smallScreen>div{
+        border: 1px solid gray;
+        margin-bottom: 5px;
+        padding: 10px;
+        background-color: white;
+        color: black;
+    }
+    .account_smallScreen>div>p{
+       margin-bottom: 12px;
+    }
+    .account_smallScreen>div>h2{
+       margin: 12px 0px;
+       color: #737373;
+       font-size: 20px;
+    }
+    .account_smallScreen>div>button{
+       width: 90%;
+       background-color: #E6E6E6;
+       display: block;
+       margin: 10px auto;
+       font-size: 20px;
+       padding: 10px;
+    }
+    .Account_row{
+        padding: 12px 20px 12px 0px;
+        font-size: 17px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .Account_row>div{
+        display: flex;
+        align-items: center;
+    }
+    .Account_row>div>img{
+        width: 60px;
+        margin-right:10px;
+    }
+    .Account_row>span{
+        position: absolute;
+        right: 5px;
+    }
+    
+
+
+    @media screen and (max-width:350px){
+        .account_smallScreen{
+            background-color: #F3F3F3;
+            padding: 10px 2%;
+        } 
+        .account_smallScreen>div{
+            padding: 5px;
+        }
+    }
     @media screen and (max-width:900px){
         nav>img{
             width: 150px;

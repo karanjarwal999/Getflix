@@ -31,9 +31,9 @@ export default function SignUp() {
   // move overlay on input focus 
   function InputOverlay() {
     let Overlay = document.getElementsByClassName(`${style.emailOverlay}`)
-    Overlay[0].style.top = '12px'
+    Overlay[0].style.top = '5px'
     Overlay[0].style.fontSize = '13px'
-    Overlay[1].style.top = '12px'
+    Overlay[1].style.top = '5px'
     Overlay[1].style.fontSize = '13px'
   }
 

@@ -58,6 +58,15 @@ export default function Step1() {
     }
   }
 
+  function NameOverlay() {
+    let nameInput = document.getElementById('name')
+    let nameOverlay = document.getElementsByClassName('nameOverlay')
+    if (nameInput.value !== '') {
+      nameOverlay[0].style.bottom = '27px'
+      nameOverlay[0].style.fontSize = '12px'
+    }
+  }
+
 
   // function to create account
   function handleSubmit() {
@@ -71,7 +80,10 @@ export default function Step1() {
       })
     }
 
-    if (userData.email === '' || userData.password === '') {
+    if (userData.name === '' ) {
+      sendToast('Please enter name', 'warning')
+    }
+    else if (userData.email === '' || userData.password === '') {
       sendToast('Please enter valid email or password', 'warning')
     }
     else if(!userData.email.includes('@')||!userData.email.includes('.com')){
@@ -85,9 +97,9 @@ export default function Step1() {
       createUserWithEmailAndPassword(Auth, userData.email, userData.password)
         .then(() => {
           sendToast('Account created sucessfully', 'success')
-          SetIsLoading(false)
-
-          updateProfile(Auth.currentUser, { displayName: userData.email }).catch((err) =>console.log(err))
+          updateProfile(Auth.currentUser, { displayName: userData.name })
+          .then(() => {SetIsLoading(false)})
+          .catch((err) =>console.log(err))
 
           setTimeout(() => {
             Navigate('/signup/step2')
@@ -111,6 +123,10 @@ export default function Step1() {
           <p style={{ fontSize: '12px' }}> STEP <b>2 </b>OF <b>3</b></p>
           <h3>Create a password to start your membership</h3>
           <p>Just a few more steps and you're done! We hate paperwork, too.</p>
+          <div>
+            <input id='name' type="text" onChange={(e) => { setUserData({ ...userData, name: e.target.value }); NameOverlay() }} />
+            <p className='nameOverlay'>Name</p>
+          </div>
           <div>
             <input id='email' type="email" value={userData.email} onChange={(e) => { setUserData({ ...userData, email: e.target.value }); emailOverlay() }} />
             <p className='emailOverlay'>Email</p>

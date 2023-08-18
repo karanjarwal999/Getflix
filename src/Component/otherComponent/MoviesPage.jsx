@@ -8,6 +8,7 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Tooltip
 import style from '../../Styles/otherComponent/Homepage.module.css'
 import { styled } from 'styled-components'
 import MoviesList from './MoviesList'
+import { playVideofullScreen } from '../../store/dataFunction'
 
 export default function ByLanguagePage() {
   const dispatch = useDispatch()
@@ -33,7 +34,6 @@ export default function ByLanguagePage() {
 
   // manage popup modal
   const ManageModal = async (id, vedioId, category) => {
-    onClose()
     setExpandModal(false)
     setRandomNumber(Math.floor(Math.random() * 7))
     // getting more data of movie
@@ -156,14 +156,14 @@ export default function ByLanguagePage() {
               {ModalData.vedioId === 'notFound' ?
                 <img className={style.modalPoster} src={`https://image.tmdb.org/t/p/original${ModalData.data?.backdrop_path}`} alt={ModalData.title} /> :
                 <div className={style.modalIframe}>
-                  <iframe title='movie' src={`https://www.youtube.com/embed/${ModalData.vedioId}?showinfo=0&controls=0&autoplay=1&mute=1&loop=1`}></iframe>
+                  <iframe title='movie' id='videoFrame' src={`https://www.youtube.com/embed/${ModalData.vedioId}?showinfo=0&controls=0&autoplay=1&mute=1&loop=1`}></iframe>
                 </div>
               }
               <span className={style.modalImageOverlay}></span>
               <div className={style.modalIframeOverlay}>
                 <h3>{ModalData.data?.title}</h3>
                 <div className={style.ModalbuttonDiv}>
-                  <button><span id='boldIcon' className="material-symbols-outlined">play_arrow</span>Play</button>
+                  <button onClick={playVideofullScreen} ><span id='boldIcon' className="material-symbols-outlined">play_arrow</span>Play</button>
                   <button onClick={() => dispatch({ type: 'update_MyList', payload: ModalData.data?.id })}>
                     {MyList.includes(ModalData.data?.id) ?
                       <span className="material-symbols-outlined">check_circle</span> :
