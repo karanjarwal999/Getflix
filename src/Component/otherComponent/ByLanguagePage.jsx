@@ -4,9 +4,9 @@ import HomeFooter from './HomeFooter'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import MovieCard from './MovieCard'
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Tooltip, useDisclosure } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Tooltip, useDisclosure, useToast } from '@chakra-ui/react'
 import style from '../../Styles/otherComponent/Homepage.module.css'
-import { playVideofullScreen } from '../../store/dataFunction'
+import { SendToast, playVideofullScreen } from '../../store/dataFunction'
 
 export default function ByLanguagePage() {
   const dispatch = useDispatch()
@@ -24,9 +24,14 @@ export default function ByLanguagePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   // fetching vedio Id from youtube  api
+  const toast = useToast()
   const fetchVedio = (data, category) => {
     axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
+      .catch((err)=>{
+        SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")
+        setModalData({ data: data, vedioId: "notFound", category: category })
+      })
   }
 
   // manage popup modal 

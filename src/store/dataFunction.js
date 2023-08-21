@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 
@@ -114,4 +115,17 @@ export function playVideofullScreen() {
   } else if (iframe.msRequestFullscreen) { /* IE11 */
     iframe.msRequestFullscreen();
   }
+}
+
+
+
+export function SendToast(toast,message,description) {
+  toast({
+    title:message,
+    description:description,
+    position: 'top',
+    isClosable: true,
+    status:'warning',
+    duration: 3000,
+  })
 }

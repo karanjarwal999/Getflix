@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import style from '../../Styles/otherComponent/Homepage.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, useDisclosure, Tooltip } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, useDisclosure, Tooltip, useToast } from '@chakra-ui/react'
 import MoviesList from './MoviesList'
 import Loader from './Loader'
 import HomeFooter from './HomeFooter'
 import axios from 'axios'
-import { playVideofullScreen } from '../../store/dataFunction'
+import { SendToast, playVideofullScreen } from '../../store/dataFunction'
 
 export default function HomePage() {
   const dispatch = useDispatch()
@@ -54,11 +54,15 @@ export default function HomePage() {
         }
       })
 
-
+    const toast = useToast()
     // fetching vedio id from youtube api
     function fetchVedio(data, category) {
       axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
+        .catch((err)=>{
+          SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")
+          setModalData({ data: data, vedioId: "notFound", category: category })
+        })
     }
   }
 

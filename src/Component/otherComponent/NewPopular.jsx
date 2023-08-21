@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import style from '../../Styles/otherComponent/Homepage.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, useDisclosure, Tooltip } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton, useDisclosure, Tooltip, useToast } from '@chakra-ui/react'
 import MoviesList from './MoviesList'
 import Loader from './Loader'
 import HomeFooter from './HomeFooter'
 import axios from 'axios'
-import { playVideofullScreen } from '../../store/dataFunction'
+import { SendToast, playVideofullScreen } from '../../store/dataFunction'
 
 export default function Movies() {
+  const toast = useToast()
   const dispatch = useDispatch()
   const [ModalData, setModalData] = useState({})
   const [RandomNumber, setRandomNumber] = useState(0)
@@ -50,6 +51,10 @@ export default function Movies() {
     function fetchVedio(data, category, released) {
       axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category, released: released }))
+        .catch((err)=>{
+          SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")
+          setModalData({ data: data, vedioId: "notFound", category: category })
+        })
     }
   }
 
