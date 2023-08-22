@@ -88,3 +88,54 @@ Welcome to the Netflix Clone project! This is a dynamic web application built us
 ![Screenshot 2023-08-22 122434](https://github.com/karanjarwal999/Getflix/assets/119421686/1a0d1125-afe6-4597-9459-9f2e86f3151d)
 <hr>
 
+
+## Setup
+
+Follow these steps to set up and run the Netflix Clone project on your local machine:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/your-username/netflix-clone.git
+   cd netflix-clone```
+   
+2. Install Dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Environment Variables:
+   Create a .env file in the root of your project.
+   Set your environment variables in the .env file. Here's an example:
+   ```plaintext
+   REACT_APP_TMDB_API_KEY = TMDB-api-key
+   REACT_APP_TMDB_AUTH = TMDB-Authorization-key
+   REACT_APP_YOUTUBE_API = google-youtube-api-key
+   
+   // firebase
+   // You will get this all in Firebase settings
+   REACT_APP_FIREBASE_API_KEY = your-firebase-api-key
+   REACT_APP_FIREBASE_AUTH_DOMAIN = your-auth-domain
+   REACT_APP_FIREBASE_PROJECT_ID = your-project-id
+   REACT_APP_FIREBASE_DATABASE_URL= firebase-data-url
+   REACT_APP_FIREBASE_STORAGE_BUCKET = your-storage-bucket
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID = your-messaging-sender-id
+   REACT_APP_FIREBASE_APP_ID = your-app-id
+   ```
+4. Start the Development Server:
+   ```bash
+   npm run start
+   ```
+
+5. Access the App:
+
+   Open your browser and navigate to http://localhost:3000 to access the Netflix Clone app.
+
+6. Authentication:
+
+   You can sign up or log in using your email and password via Firebase authentication.<br/>
+   For testing, you can use the "Login as Guest" option if you have implemented it.
+
+## Explore and Enjoy!
+Browse movies, watch trailers, and explore the various features of the Netflix Clone project.
+
