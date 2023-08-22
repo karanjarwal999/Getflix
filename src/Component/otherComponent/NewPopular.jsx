@@ -32,7 +32,7 @@ export default function Movies() {
     axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
+        Authorization: `Bearer ${process.env.REACT_APP_TMDB_AUTH}`
       }
     })
       .then((res) => {
@@ -49,7 +49,7 @@ export default function Movies() {
 
     // fetching vedio id from youtubr api
     function fetchVedio(data, category, released) {
-      axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
+      axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=${process.env.REACT_APP_YOUTUBE_API}`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category, released: released }))
         .catch((err)=>{
           SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")

@@ -2,10 +2,13 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
 
+const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const TMDB_AUTH=process.env.REACT_APP_TMDB_AUTH
+
 // step 1
 // function to fetch list of movie category 
 export const getMovieCategoryList = (dispatch) => {
-  axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=b97de106eb54ec9aafab9d43cc220a48')
+  axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${TMDB_API_KEY}`)
     .then((res) => {
       // adding data to store
       dispatch({ type: 'update_List', payload: res.data.genres });
@@ -23,10 +26,10 @@ export const getMovieCategoryList = (dispatch) => {
 // this function fetch only action movie from list instead of fetch all just to decreses home page banner rendering time 
 const fetchOnlyAction = (num, fetchlist) => async (dispatch) => {
   let movies = []
-  let temp = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=b97de106eb54ec9aafab9d43cc220a48_&with_genres=${fetchlist[num].id}`, {
+  let temp = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}_&with_genres=${fetchlist[num].id}`, {
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
+      Authorization: `Bearer ${TMDB_AUTH}`
     }
   })
 
@@ -54,10 +57,10 @@ const fetchNext_4Movies = (num, fetchlist) => async (dispatch) => {
   for (let i = num; i < num + 4; i++) {
 
     if (fetchlist[i]) {
-      let temp = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=b97de106eb54ec9aafab9d43cc220a48_&with_genres=${fetchlist[i].id}`, {
+      let temp = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}_&with_genres=${fetchlist[i].id}`, {
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
+          Authorization: `Bearer ${TMDB_AUTH}`
         }
       })
 
@@ -88,7 +91,7 @@ const New_popular = async (dispatch) => {
     let temp = await axios.get(`https://api.themoviedb.org/3/movie/${apiendpoints[i]}`, {
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
+        Authorization: `Bearer ${TMDB_AUTH}`
       }
     })
 
