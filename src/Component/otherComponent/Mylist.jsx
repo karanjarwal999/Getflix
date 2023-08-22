@@ -43,7 +43,7 @@ export default function Mylist() {
 
   // fetching vedio id from youtube api
   const fetchVedio=(data, category)=>{
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=${process.env.REACT_APP_YOUTUBE_API}`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
       .catch((err)=>{
         SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")
@@ -60,7 +60,7 @@ export default function Mylist() {
     axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${process.env.REACT_APP_TMDB_AUTH}`
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
       }
     })
       .then((res) => {
@@ -86,7 +86,7 @@ export default function Mylist() {
       axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${process.env.REACT_APP_TMDB_AUTH}`
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
         }
       })
         .then((res) => {

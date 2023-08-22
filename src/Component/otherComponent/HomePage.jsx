@@ -10,7 +10,6 @@ import { SendToast, playVideofullScreen } from '../../store/dataFunction'
 
 export default function HomePage() {
   const dispatch = useDispatch()
-  const toast = useToast()
   const [bannerMovie, setBannerMovie] = useState('')
   const [ModalData, setModalData] = useState({})
   const [RandomNumber, setRandomNumber] = useState(0)
@@ -31,6 +30,7 @@ export default function HomePage() {
     serBannerLoaded(true)
   }
 
+
   // manage popup modal 
   async function ManageModal(id, vedioId, category) {
     setRandomNumber(Math.floor(Math.random()*7))
@@ -39,7 +39,7 @@ export default function HomePage() {
     axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${process.env.REACT_APP_TMDB_AUTH}`
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTdkZTEwNmViNTRlYzlhYWZhYjlkNDNjYzIyMGE0OCIsInN1YiI6IjY0NzYwNTVkYzI4MjNhMDBjNDIxYzgyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7qGZeU1ca2R-nft23Y2XFCVrRv9idUNrQCQARZV_puw'
       }
     })
       .then((res) => {
@@ -54,10 +54,10 @@ export default function HomePage() {
         }
       })
 
-  
+    const toast = useToast()
     // fetching vedio id from youtube api
     function fetchVedio(data, category) {
-      axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=${process.env.REACT_APP_YOUTUBE_API}`)
+      axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
         .then(response => setModalData({ data: data, vedioId: response.data.items[0].id.videoId, category: category }))
         .catch((err)=>{
           SendToast(toast,"cannot play video","deu to youtube api limit exceeded we cannot play video")

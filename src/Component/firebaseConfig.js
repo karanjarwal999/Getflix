@@ -1,17 +1,20 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth'
 
+
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  apiKey: "AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w",
+  authDomain: "cineflix-23dba.firebaseapp.com",
+  databaseURL: "https://cineflix-23dba-default-rtdb.firebaseio.com",
+  projectId: "cineflix-23dba",
+  storageBucket: "cineflix-23dba.appspot.com",
+  messagingSenderId: "471944561562",
+  appId: "1:471944561562:web:e142ed6df750290934b023"
 };
+
 
 const app = initializeApp(firebaseConfig);
 const Auth= getAuth()
+
 
 export {app,Auth};

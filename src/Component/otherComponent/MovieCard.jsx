@@ -31,7 +31,7 @@ export default function MovieCard({ data, index, ManageModal, category,}) {
 
   function fetchVedio() {
     // fetching vedio Id to play
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=${process.env.REACT_APP_YOUTUBE_API}`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${data.title}&key=AIzaSyAH-pBMcZ5CutrybeG4fSnDwjqUz5Swe0w`)
       .then(response => {
         setVedioId(response.data.items[0].id.videoId);
         console.log(response.data.items[0].id.videoId)
