@@ -2,7 +2,7 @@
 
 Welcome to the Netflix Clone project! This is a dynamic web application built using React, Redux, Firebase, and the TMDB API. It allows users to explore a collection of movies, watch trailers, add movies to their list, and more. Below, you'll find a detailed guide on setting up the project and its features.
 
-**Live Demo**: [visit](https://papaya-quokka-0c2e99.netlify.app)
+**Live Demo**: [visit](https://getflix-three.vercel.app/)
 
 ## Table of Contents
 
